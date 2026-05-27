@@ -1,12 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Birthday Site</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K ★ - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;0,6..96,400;0,6..96,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>hello :)</h1>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<div id="terms-overlay">
+  <div id="terms-box">
+    <h2>Terms & Conditions of Existence</h2>
+    <p class="subtitle">Please read carefully before entering this dimension</p>
+    <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--muted); line-height: 1.6; background: rgba(0,0,0,0.05); padding: 10px; border-radius: 5px;">
+      <strong>Effective Date:</strong> the day Karime was born, on June 16 2006 at 4:00pm.<br>
+      <strong>Jurisdiction:</strong> the entire known universe, some secret area and somewhere in Texas.
+    </p>
+    <ol>
+      <li>Not to glaze you but by entering this website, you acknowledge that you are, empirically and without further debate, the most interesting person in any given room.</li>
+      <li>You agree to eventually watch every single movie in the world ever with me.</li>
+      <li>You accept that crying at this website constitutes a breach of composure on your part, and not the fault of the content. Don't be a pussy basically.</li>
+      <li>Sharing the playlist without credit is a federal offense in this jurisdiction.</li>
+      <li>You agree that birthdays are, in fact, a big deal, and should be treated as national holidays. Yours specifically.</li>
+      <li>By scrolling past this page, you confirm you are here with good intentions, an open heart, and ideally snacks.</li>
+    </ol>
+    <p style="font-size: 0.95rem; margin-top: 1rem;">This agreement is binding, eternal, and very much not a real legal document. But emotionally? Absolutely binding.</p>
+    <button id="terms-accept">I Accept These Sacred Terms ✦</button>
+  </div>
+</div>
+
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html">K ✦</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="music.html">Playlist</a></li>
+    <li><a href="map.html">Universities</a></li>
+    <li><a href="messages.html">Letters</a></li>
+    <li><a href="secret.html">✦ Secret</a></li>
+    <li><a href="portrait.html">Portrait</a></li>
+  </ul>
+</nav>
+
+<div class="page" id="page-home">
+  <section id="hero">
+    <div id="hero-video-placeholder">
+      <div class="k-overlay" id="k-overlay"></div>
+      </div>
+    <div class="hero-content">
+      <h1>Happy<br>Birthday,<br>K.</h1>
+      <p>a love letter in five acts</p>
+    </div>
+    <div class="scroll-hint">scroll ↓</div>
+  </section>
+
+  <div class="section fade-in">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>To the one who makes everything more interesting.</h2>
+        <p>Replace this text with your own words about your friend.</p>
+        <blockquote class="about-quote">"Some people arrive and make such a beautiful impact on your life, you can barely remember what it was like without them."</blockquote>
+      </div>
+      <div class="about-image">
+        <span>[ drop a photo here ]</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

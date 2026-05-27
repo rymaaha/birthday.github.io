@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K ★ - Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;0,6..96,400;0,6..96,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html">K ✦</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="music.html">Playlist</a></li>
+    <li><a href="map.html">Universities</a></li>
+    <li><a href="messages.html">Letters</a></li>
+    <li><a href="secret.html">✦ Secret</a></li>
+    <li><a href="portrait.html">Portrait</a></li>
+  </ul>
+</nav>
+
+<div class="page" id="page-gallery">
+  <div class="gallery-header fade-in">
+    <h2>Gallery</h2>
+    <p>a visual record of someone worth remembering</p>
+  </div>
+
+  <div class="upload-zone fade-in" onclick="document.getElementById('photo-input').click()">
+    <p>✦ drop photos here to add them to the gallery · click to browse</p>
+    <input type="file" id="photo-input" accept="image/*" multiple>
+  </div>
+
+  <div class="photo-grid fade-in" id="photo-grid">
+    <div class="photo-card" tabindex="0">
+      <div class="photo-placeholder">
+        <div class="icon">◻</div>
+        <div class="label">add a photo<br>click upload above</div>
+      </div>
+      <div class="photo-caption">caption here</div>
+    </div>
+  </div>
+</div>
+
+<div id="lightbox">
+  <span id="lb-close">×</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
