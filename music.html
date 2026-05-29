@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K ★ - Soundtrack</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;0,6..96,400;0,6..96,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Playlist</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
-<nav id="nav">
-  <div class="nav-logo"><a href="index.html">K ✦</a></div>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="music.html" class="active">Playlist</a></li>
-    <li><a href="map.html">Universities</a></li>
-    <li><a href="messages.html">Letters</a></li>
-    <li><a href="secret.html">✦ Secret</a></li>
-    <li><a href="portrait.html">Portrait</a></li>
-  </ul>
-</nav>
-
-<div class="page" id="page-playlist">
-  <div class="playlist-header fade-in">
-    <h2>The Playlist</h2>
-    <p>songs that sound like you</p>
-  </div>
-
-  <div class="playlist-embed fade-in">
-    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7oF4kSyKhXMb7Ba9fGYlCZ?utm_source=generator" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-  </div>
-
-  <div class="playlist-note fade-in">
-    <p>Every song on this playlist was chosen with intention. Some because they sound like you. Some because they were playing during a specific moment. Some because I heard them and immediately thought: K would love this. Press play, and maybe you'll hear what I mean.</p>
-  </div>
-</div>
-
-<script src="script.js"></script>
+    <nav id="nav">
+      <a href="index.html" class="nav-logo">K ✦</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="music.html" class="active">Playlist</a></li>
+        <li><a href="map.html">Universities</a></li>
+        <li><a href="messages.html">Letters</a></li>
+        <li><a href="secret.html">✦ Secret</a></li>
+        <li><a href="portrait.html">Portrait</a></li>
+      </ul>
+    </nav>
+    <div class="page active fade-in" id="page-playlist" style="text-align: center; padding: 5rem 2rem;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem;">The Playlist</h2>
+        <p style="color: var(--muted); font-style: italic; margin-bottom: 2rem;">Songs that sound like you</p>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+        
+        <p style="margin-top: 3rem; color: var(--muted); max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.8;">Every song on this playlist was chosen with intention. Some because they sound like you. Some because they were playing during a specific moment. Some because I heard them and immediately thought: K would love this. Press play, and maybe you'll hear what I mean.</p>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>

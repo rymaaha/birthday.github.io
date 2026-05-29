@@ -1,90 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K ★ - Universities</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;0,6..96,400;0,6..96,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Universities</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+    <nav id="nav">
+      <a href="index.html" class="nav-logo">K ✦</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="music.html">Playlist</a></li>
+        <li><a href="map.html" class="active">Universities</a></li>
+        <li><a href="messages.html">Letters</a></li>
+        <li><a href="secret.html">✦ Secret</a></li>
+        <li><a href="portrait.html">Portrait</a></li>
+      </ul>
+    </nav>
+    <div class="page active fade-in" id="page-map" style="padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 1rem;">The Texas Question</h2>
+      
+      <p style="color: var(--muted); font-style: italic; margin-bottom: 3rem; line-height: 1.8; max-width: 800px; margin-left: auto; margin-right: auto;">
+        A curated shortlist, narrowing down the coordinates just for you. Based on everything I know—the exact number of hours you want to be away from home, the specific vibe you're looking for, and your major. This is my educated attempt. Mind you, this explicitly factors in that the university must offer a bachelor's in Forensic Science, as that's what you are studying.
+      </p>
+      
+      <div style="border: 1px solid rgba(10,10,10,0.15); height: 450px; margin-bottom: 3rem;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.2435502699!2d-97.7430608!3d30.267153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDE2JzAxLjgiTiA5N8KwNDQnMzUuMCJX!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
 
-<nav id="nav">
-  <div class="nav-logo"><a href="index.html">K ✦</a></div>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="music.html">Playlist</a></li>
-    <li><a href="map.html" class="active">Universities</a></li>
-    <li><a href="messages.html">Letters</a></li>
-    <li><a href="secret.html">✦ Secret</a></li>
-    <li><a href="portrait.html">Portrait</a></li>
-  </ul>
-</nav>
-
-<div class="page" id="page-map">
-  <div class="map-header fade-in">
-    <h2>The Texas Question</h2>
-    <p style="line-height: 1.8; max-width: 800px; margin: 0 auto 2rem auto;">
-      a curated shortlist based on the coordinates: near the border, roughly 8 hours from San Antonio, and 11 hours from El Paso. this is my educated attempt at cracking the case, mind you, keeping in mind that this university must also offer a bachelor's in forensic science, as that is what you are studying.
-    </p>
-  </div>
-
-  <!-- Interactive Google Map -->
-  <div class="map-container fade-in" style="height: 450px; border: 1px solid rgba(10,10,10,.15); padding: 0;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445580.443564998!2d-101.44299949666088!3d31.168936665780514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864070360b823249%3A0x16eb1c8f1808de3c!2sTexas!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-
-  <div class="uni-list fade-in" id="uni-list">
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; text-align: left;">
+        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">UT Austin</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Austin, TX · Public Research</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">The classic wildcard. Strong programs, incredible culture, and a solid distance from home.</p>
+        </div>
+        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">UTRGV</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Edinburg/Brownsville, TX</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Deep in the valley. It fits the border clues perfectly and has a growing, highly accessible forensics track.</p>
+        </div>
+        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">UTEP</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">El Paso, TX · Public Research</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Right on the border with excellent research opportunities and field-specific study areas.</p>
+        </div>
+        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">TAMIU</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Laredo, TX · Public</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">A Laredo gem that meets the exact coordinate rules and distance logic you laid out.</p>
+        </div>
+      </div>
+    </div>
     
-    <div class="uni-card">
-      <h3>The University of Texas Rio Grande Valley</h3>
-      <div class="city">Brownsville & Edinburg, TX · Public University</div>
-      <div class="tags">
-        <span class="badge match">Forensic Science</span>
-        <span class="badge">Target Distance</span>
-        <span class="badge">Border Proximity</span>
-      </div>
-      <p style="font-size:.85rem;color:var(--muted);margin-top:1rem;line-height:1.6">Located right in the valley near the border. If we are calculating distances and specific coordinates, this hits the mark perfectly, and their science programs back it up.</p>
-    </div>
-
-    <div class="uni-card">
-      <h3>The University of Texas at El Paso</h3>
-      <div class="city">El Paso, TX · Public Research University</div>
-      <div class="tags">
-        <span class="badge match">Forensic Science Track</span>
-        <span class="badge">Far West</span>
-        <span class="badge">Mountains</span>
-      </div>
-      <p style="font-size:.85rem;color:var(--muted);margin-top:1rem;line-height:1.6">The anchor of West Texas. Famous for its stunning Bhutanese architecture and nestled right into the mountains along the border, with strong investigative science tracks.</p>
-    </div>
-
-    <div class="uni-card">
-      <h3>Texas A&M International University</h3>
-      <div class="city">Laredo, TX · Public University</div>
-      <div class="tags">
-        <span class="badge match">Criminal Justice</span>
-        <span class="badge">Close-Knit</span>
-      </div>
-      <p style="font-size:.85rem;color:var(--muted);margin-top:1rem;line-height:1.6">Another fantastic option deep in South Texas. Smaller, tight-knit, and sits exactly on the cultural crossroads of the border.</p>
-    </div>
-
-    <div class="uni-card">
-      <h3>UT Austin</h3>
-      <div class="city">Austin, TX · Public Research University</div>
-      <div class="tags">
-        <span class="badge">The Classic</span>
-        <span class="badge">Science Hub</span>
-      </div>
-      <p style="font-size:.85rem;color:var(--muted);margin-top:1rem;line-height:1.6">We can't have a Texas map without it. Regardless of the exact coordinates, Austin's research facilities are unmatched. Hook 'em.</p>
-    </div>
-
-  </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

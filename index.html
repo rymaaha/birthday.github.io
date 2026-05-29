@@ -1,77 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K ★ - Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;0,6..96,400;0,6..96,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, K</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
-<div id="terms-overlay">
-  <div id="terms-box">
-    <h2>Terms & Conditions of Existence</h2>
-    <p class="subtitle">Please read carefully before entering this dimension</p>
-    <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--muted); line-height: 1.6; background: rgba(0,0,0,0.05); padding: 10px; border-radius: 5px;">
-      <strong>Effective Date:</strong> the day Karime was born, on June 16 2006 at 4:00pm.<br>
-      <strong>Jurisdiction:</strong> the entire known universe, some secret area and somewhere in Texas.
-    </p>
-    <ol>
-      <li>Not to glaze you but by entering this website, you acknowledge that you are, empirically and without further debate, the most interesting person in any given room.</li>
-      <li>You agree to eventually watch every single movie in the world ever with me.</li>
-      <li>You accept that crying at this website constitutes a breach of composure on your part, and not the fault of the content. Don't be a pussy basically.</li>
-      <li>Sharing the playlist without credit is a federal offense in this jurisdiction.</li>
-      <li>You agree that birthdays are, in fact, a big deal, and should be treated as national holidays. Yours specifically.</li>
-      <li>By scrolling past this page, you confirm you are here with good intentions, an open heart, and ideally snacks.</li>
-    </ol>
-    <p style="font-size: 0.95rem; margin-top: 1rem;">This agreement is binding, eternal, and very much not a real legal document. But emotionally? Absolutely binding.</p>
-    <button id="terms-accept">I Accept These Sacred Terms ✦</button>
-  </div>
-</div>
-
-<nav id="nav">
-  <div class="nav-logo"><a href="index.html">K ✦</a></div>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="music.html">Playlist</a></li>
-    <li><a href="map.html">Universities</a></li>
-    <li><a href="messages.html">Letters</a></li>
-    <li><a href="secret.html">✦ Secret</a></li>
-    <li><a href="portrait.html">Portrait</a></li>
-  </ul>
-</nav>
-
-<div class="page" id="page-home">
-  <section id="hero">
-    <div id="hero-video-placeholder">
-      <div class="k-overlay" id="k-overlay"></div>
-      </div>
-    <div class="hero-content">
-      <h1>Happy<br>Birthday,<br>K.</h1>
-      <p>a love letter in five acts</p>
+    <div id="pg-toggle" onclick="togglePG()">
+      <div class="pg-indicator"></div>
+      <span id="pg-label">PG Mode</span>
     </div>
-    <div class="scroll-hint">scroll ↓</div>
-  </section>
 
-  <div class="section fade-in">
-    <div class="about-grid">
-      <div class="about-text">
-        <h2>To the one who makes everything more interesting.</h2>
-        <p>Replace this text with your own words about your friend.</p>
-        <blockquote class="about-quote">"Some people arrive and make such a beautiful impact on your life, you can barely remember what it was like without them."</blockquote>
-      </div>
-      <div class="about-image">
-        <span>[ drop a photo here ]</span>
+    <div id="terms-overlay">
+      <div id="terms-box">
+        <h2>Terms & Conditions of Existence</h2>
+        <p class="subtitle">Please read carefully before entering this dimension</p>
+        <p>Effective Date: the day Karime was born, on June 16 2006 at 4:00pm.</p>
+        <p>Jurisdiction: the entire known universe, some secret area and somewhere in Texas.</p>
+        <ol>
+          <li>Not to glaze you but by entering this website, you acknowledge that you are, empirically and without further debate, the most interesting person in any given room.</li>
+          <li>You agree to eventually watch every single movie in the world ever with me.</li>
+          <li>You accept that crying at this website constitutes a breach of composure on your part, and not the fault of the content. <span class="pg-word">Don't be a pussy basically.</span></li>
+          <li>Sharing the playlist without credit is a federal offense in this jurisdiction.</li>
+          <li>You agree that birthdays are, in fact, a big deal, and should be treated as national holidays. Yours specifically.</li>
+          <li>By scrolling past this page, you confirm you are here with good intentions, an open heart, and ideally snacks.</li>
+        </ol>
+        <p>This agreement is binding, eternal, and very much not a real legal document. But emotionally? Absolutely binding.</p>
+        <button id="terms-accept">I Accept These Sacred Terms ✦</button>
       </div>
     </div>
-  </div>
-</div>
 
-<script src="script.js"></script>
+    <nav id="nav">
+      <a href="index.html" class="nav-logo">K ✦</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="music.html">Playlist</a></li>
+        <li><a href="map.html">Universities</a></li>
+        <li><a href="messages.html">Letters</a></li>
+        <li><a href="secret.html">✦ Secret</a></li>
+        <li><a href="portrait.html">Portrait</a></li>
+      </ul>
+    </nav>
+
+    <div class="page active" id="page-home">
+      <section id="hero">
+        <div id="hero-video-placeholder">
+          <div class="k-overlay" id="k-overlay"></div>
+        </div>
+        <div class="hero-content fade-in">
+          <h1>Happy<br>Birthday,<br>K.</h1>
+          <p class="tagline">a love letter in five acts</p>
+        </div>
+        <div class="scroll-hint">scroll ↓</div>
+      </section>
+
+      <div class="act-marker fade-in">
+        <div class="act-number">Act I</div>
+        <div class="act-title">The Beginning</div>
+        <div class="act-rule"></div>
+      </div>
+      <div class="act-grid fade-in">
+        <div class="act-image">
+          <span>[ place a photo here ]</span>
+        </div>
+        <div class="act-text-col">
+          <p>To the one who makes everything more interesting. Replace this text with your own words about your friend. Tell her about the first time you met, the thing that made you realize she was going to be important, the specific way she laughs at her own jokes.</p>
+          <p>Write it like you'd tell it to someone who's never met her. The scene. The weather. What she was wearing.</p>
+          <blockquote class="act-quote">"Some people arrive and make such a beautiful impact on your life, you can barely remember what it was like without them."</blockquote>
+        </div>
+      </div>
+      <div class="section-rule"></div>
+
+      <div class="act-marker fade-in">
+        <div class="act-number">Act II</div>
+        <div class="act-title">The Things She Doesn't Know</div>
+        <div class="act-rule"></div>
+      </div>
+      <div class="act-body fade-in">
+        <p>Write about something she does that she probably doesn't realize. The specific, unremarkable habit that you've always found quietly extraordinary.</p>
+        <div class="pull">"Replace this with something true and specific that could only be about her."</div>
+        <p>These are the things worth writing down. Not the big moments — the small ones.</p>
+      </div>
+      <div class="section-rule"></div>
+
+      <div class="act-marker fade-in">
+        <div class="act-number">Act III</div>
+        <div class="act-title">The Record</div>
+        <div class="act-rule"></div>
+      </div>
+      <div class="act-body fade-in">
+        <p>This is the act for memories. List them, or write them in prose. The trip you took, the night that ran too late, the time something went <span class="pg-word">completely wrong</span> and you both ended up laughing about it.</p>
+        <div class="pull">"A memory goes here. Make it a good one — or a real one, which is better."</div>
+      </div>
+      <div class="section-rule"></div>
+
+      <div class="act-marker fade-in">
+        <div class="act-number">Act IV</div>
+        <div class="act-title">What I Want For You</div>
+        <div class="act-rule"></div>
+      </div>
+      <div class="act-body fade-in">
+        <p>Everything good this year. Every door that opens right on time. Every city you want to see, every film that moves you, every conversation that goes three hours and feels like thirty minutes.</p>
+        <p>You deserve a spectacular year. This is the act where I say it in writing so you can't forget it.</p>
+      </div>
+      <div class="section-rule"></div>
+
+      <div class="act-marker fade-in">
+        <div class="act-number">Act V</div>
+        <div class="act-title">The Thing I Always Mean To Say</div>
+        <div class="act-rule"></div>
+      </div>
+      <div class="act-body fade-in" style="padding-bottom:8rem">
+        <p>Replace this with the truest thing you know about her. Not the polished version — the real one. The thing you'd say if you had exactly one minute.</p>
+        <div class="pull">"The world is lucky to have you in it, K. And we are luckier still."</div>
+        <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.5rem;color:var(--rose);margin-top:2rem">Happy Birthday, K.</p>
+      </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>

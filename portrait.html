@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K ★ - Portrait</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;0,6..96,400;0,6..96,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Portrait</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-cursor dark-page">
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+    <nav id="nav" class="dark-nav">
+      <a href="index.html" class="nav-logo">K ✦</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="music.html">Playlist</a></li>
+        <li><a href="map.html">Universities</a></li>
+        <li><a href="messages.html">Letters</a></li>
+        <li><a href="secret.html">✦ Secret</a></li>
+        <li><a href="portrait.html" class="active">Portrait</a></li>
+      </ul>
+    </nav>
 
-<nav id="nav">
-  <div class="nav-logo"><a href="index.html">K ✦</a></div>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="music.html">Playlist</a></li>
-    <li><a href="map.html">Universities</a></li>
-    <li><a href="messages.html">Letters</a></li>
-    <li><a href="secret.html">✦ Secret</a></li>
-    <li><a href="portrait.html" class="active">Portrait</a></li>
-  </ul>
-</nav>
-
-<div class="page" id="page-film">
-  <div class="film-header fade-in">
-    <h2>Portrait de la Jeune Fille en Feu</h2>
-    <div class="year">Céline Sciamma · 2019</div>
-    <p>A film about looking. About being seen. About the specific violence and tenderness of remembering someone exactly as they were.</p>
-  </div>
-
-  <div class="video-parts fade-in">
-    <div class="video-part">
-      <h3>Part I</h3>
-      <div class="video-placeholder">
-        <div class="video-placeholder-inner">
-          <div class="play-icon">▶</div>
-          <p>Paste a YouTube embed iframe here</p>
-        </div>
+    <div class="page active" id="page-film">
+      <div style="padding: 5rem 3rem 2rem; text-align: center;" class="fade-in">
+        <h2 style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 3rem; color: var(--dp-text);">Portrait de la Jeune Fille en Feu</h2>
+        <p style="color: var(--dp-muted); font-style: italic; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;">A film about looking. About being seen. About the specific violence and tenderness of remembering someone exactly as they were.</p>
+      </div>
+      
+      <div class="envelope-grid fade-in" style="margin-top: 2rem;">
+          <div class="envelope" onclick="this.classList.add('open'); setTimeout(() => openLetter('Act I', '<iframe width=\'100%\' height=\'400\' src=\'https://www.youtube.com/embed/placeholder1\' frameborder=\'0\' allowfullscreen></iframe>', true), 400)">
+              <h3 style="font-family: 'Space Mono'; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--dp-gold);">UNWRAP</h3>
+              <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-top: 15px; color: var(--dp-text);">Part I</p>
+          </div>
+          <div class="envelope" onclick="this.classList.add('open'); setTimeout(() => openLetter('Act II', '<iframe width=\'100%\' height=\'400\' src=\'https://www.youtube.com/embed/placeholder2\' frameborder=\'0\' allowfullscreen></iframe>', true), 400)">
+              <h3 style="font-family: 'Space Mono'; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--dp-gold);">UNWRAP</h3>
+              <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-top: 15px; color: var(--dp-text);">Part II</p>
+          </div>
+          <div class="envelope" onclick="this.classList.add('open'); setTimeout(() => openLetter('Act III', '<iframe width=\'100%\' height=\'400\' src=\'https://www.youtube.com/embed/placeholder3\' frameborder=\'0\' allowfullscreen></iframe>', true), 400)">
+              <h3 style="font-family: 'Space Mono'; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--dp-gold);">UNWRAP</h3>
+              <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-top: 15px; color: var(--dp-text);">Part III</p>
+          </div>
       </div>
     </div>
-  </div>
-</div>
 
-<script src="script.js"></script>
+    <div id="letter-modal" class="letter-modal">
+        <div class="letter-content">
+            <span class="close-letter" onclick="closeLetter()">×</span>
+            <h2 id="modal-title" style="font-family: 'Playfair Display', serif; color: var(--dp-gold); margin-bottom: 1.5rem;"></h2>
+            <div id="modal-body" style="width: 100%;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
