@@ -127,23 +127,107 @@ function tryPass() {
     }
 }
 
-// ── APPLE INVISIBLE INK ──
-document.querySelectorAll('.apple-reveal').forEach(el => {
-    const words = el.innerText.split(' ');
-    el.innerHTML = '';
-    words.forEach(w => {
-        const span = document.createElement('span');
-        span.className = 'ink-word';
-        span.innerText = w;
-        span.addEventListener('mouseenter', () => {
-            span.classList.add('revealed');
-            setTimeout(() => span.classList.remove('revealed'), 2500);
-        });
-        el.appendChild(span);
-        el.appendChild(document.createTextNode(' '));
-    });
-});
+// ── APPLE INVISIBLE INK: DUAL-LAYER PARTICLE SYSTEM ──
+document.addEventListener('DOMContentLoaded', () => {
+  const boxes = document.querySelectorAll('.scratch-reveal-box');
 
+  boxes.forEach(box => {
+    const frostCanvas = box.querySelector('.frost-canvas');
+    const particleCanvas = box.querySelector('.particle-canvas');
+    const fCtx = frostCanvas.getContext('2d');
+    const pCtx = particleCanvas.getContext('2d');
+
+    let width, height;
+    let particles = [];
+    let resetTimer;
+
+    // Matches the canvas size to the text perfectly
+    const resize = () => {
+      width = box.offsetWidth;
+      height = box.offsetHeight;
+      frostCanvas.width = width;
+      frostCanvas.height = height;
+      particleCanvas.width = width;
+      particleCanvas.height = height;
+      fillFrost();
+    };
+
+    // Fills the canvas with the white fog
+    const fillFrost = () => {
+      fCtx.globalCompositeOperation = 'source-over';
+      fCtx.fillStyle = 'rgba(255, 255, 255, 0.85)'; // The white glowing cloud
+      fCtx.fillRect(0, 0, width, height);
+    };
+
+    // Initialize
+    resize();
+    window.addEventListener('resize', resize);
+
+    // The core Scratch & Sparkle function
+    const scratch = (x, y) => {
+      // 1. Erase the fog (Scratch off)
+      fCtx.globalCompositeOperation = 'destination-out';
+      fCtx.beginPath();
+      fCtx.arc(x, y, 20, 0, Math.PI * 2); // '20' is the brush size
+      fCtx.fill();
+
+      // 2. Spawn pretty white light particles
+      for (let i = 0; i < 4; i++) {
+        particles.push({
+          x: x + (Math.random() - 0.5) * 20,
+          y: y + (Math.random() - 0.5) * 20,
+          vx: (Math.random() - 0.5) * 1.5, // Drift left/right
+          vy: (Math.random() - 1) * 2,     // Float upwards
+          alpha: 1,
+          size: Math.random() * 2 + 1
+        });
+      }
+
+      // 3. Handle the quick reset
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        fillFrost(); // Refog after 800ms of inactivity
+      }, 800);
+    };
+
+    // Track mouse and touch movements
+    const handleMove = (e) => {
+      e.preventDefault(); // Prevents screen scrolling on mobile while scratching
+      const rect = box.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      scratch(clientX - rect.left, clientY - rect.top);
+    };
+
+    box.addEventListener('mousemove', handleMove);
+    box.addEventListener('touchmove', handleMove, { passive: false });
+
+    // The animation loop for the flying sparkles
+    const animateParticles = () => {
+      pCtx.clearRect(0, 0, width, height); // Clear previous frame
+      
+      for (let i = particles.length - 1; i >= 0; i--) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= 0.03; // Fade out speed
+
+        if (p.alpha <= 0) {
+          particles.splice(i, 1); // Remove dead particles
+          continue;
+        }
+
+        pCtx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+        pCtx.beginPath();
+        pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        pCtx.fill();
+      }
+      requestAnimationFrame(animateParticles);
+    };
+
+    animateParticles(); // Start the engine
+  });
+});
 // ── ENVELOPE / LETTER LOGIC ──
 function openEnvelope(wrapper, title, bodyText) {
     const envelope = wrapper.querySelector('.envelope');

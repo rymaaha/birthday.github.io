@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Universities</title>
-<link rel="icon" type="image/png" href="letterk.png">    
+    <link rel="icon" type="image/png" href="letterk.png">    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -29,7 +29,7 @@
       <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 1rem;">The Texas Investigation</h2>
       
       <p style="color: var(--muted); font-style: italic; margin-bottom: 3rem; line-height: 1.8; max-width: 800px; margin-left: auto; margin-right: auto;">
-        A curated shortlist, narrowing down the coordinates just for you. This is my highly educated attempt—mind you, this target absolutely must offer a bachelor's in Forensic Science. <br><br><strong>The Current Intel:</strong> ~11 hrs from El Paso, ~8 hrs from San Antonio, exactly 4 hours and 46 minutes away from the target, and Laredo is exactly 4 hours away...
+        A curated shortlist of candidates.
       </p>
       
       <div id="texas-map" style="border: 1px solid rgba(10,10,10,0.15); height: 450px; margin-bottom: 3rem; z-index: 1;"></div>
@@ -37,61 +37,59 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; text-align: left;">
         
         <div style="padding: 2rem; border: 1px solid var(--rose); background: rgba(201,132,122,.04);">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem; color: var(--rose);">SHSU</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Huntsville, TX · The Prime Suspect</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">The ultimate deduction. With Laredo exactly 4 hours away acting as a red herring, the 4-hour and 46-minute radius points squarely here. SHSU is globally renowned for its Forensic Science program (they even have an active body farm!). This is the true target.</p>
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem; color: var(--rose);">TAMU-Kingsville</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Kingsville, TX</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">South Texas, near the border, reachable coast, strong engineering, large open campus. Often overlooked.</p>
+        </div>
+
+        <div style="padding: 2rem; border: 1px solid var(--rose); background: rgba(201,132,122,.04);">
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem; color: var(--rose);">TAMU-CC</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Corpus Christi, TX</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Beach clue is near perfect. Strong science/engineering, specialized facilities, open campus feel.</p>
         </div>
 
         <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
             <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">TAMIU</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Laredo, TX · The Red Herring</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Laredo makes the "close to Mexico border" comment make sense. However, if she is exactly <em>4 hours away from Laredo</em>, TAMIU becomes a brilliant geographic red herring. We cross it off.</p>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Laredo, TX</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Border clue fits perfectly. Public/open campus, science/engineering. Note: Beach clue is weak.</p>
         </div>
 
         <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">UTRGV</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Edinburg / Brownsville, TX · Former Suspect</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Deep south Texas, practically on the border. While "USAR" might have been a misremembering of UTRGV, the precise 4 hour and 46 minute trajectory heavily pivots the investigation away from the Valley.</p>
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">UTSA</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">San Antonio, TX · Tier 2</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Could be remembered differently. Large campus with engineering/science, public feel.</p>
         </div>
 
         <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">TAMU-CC</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Corpus Christi, TX · The Coastal Pivot</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Located right on the water. It aligns with the lower/eastern pivot away from West Texas, but lacks the elite Forensic Science heavyweight status required to lock it in as the primary target.</p>
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">University of Houston</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Houston, TX</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Huge science/medical presence. Multiple campuses, beach reachable. Note: Border clue is weak.</p>
+        </div>
+
+        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">Texas State University</h3>
+            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">San Marcos, TX</p>
+            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Campus integrated into city. Open/public feel with strong science programs.</p>
         </div>
 
       </div>
     </div>
     
     <script src="script.js"></script>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Wait for the page to load
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize the map, centered over Texas, zoomed out to see the triangle of clues
-            var map = L.map('texas-map').setView([28.7, -97.5], 6);
-
-            // Add clean, modern map tiles (CartoDB Positron style)
+            var map = L.map('texas-map').setView([29.5, -98.5], 6);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                attribution: '&copy; OpenStreetMap'
             }).addTo(map);
 
-            // Pin 1: SHSU (Prime Suspect)
-            var shsu = L.marker([30.7145, -95.5495]).addTo(map);
-            shsu.bindPopup("<strong style='color:#c9847a; font-family:serif; font-size:1.1rem;'>SHSU</strong><br>Huntsville, TX<br><em>The Prime Suspect</em>").openPopup();
-
-            // Pin 2: TAMIU (Red Herring)
-            var tamiu = L.marker([27.5735, -99.4316]).addTo(map);
-            tamiu.bindPopup("<strong style='font-family:serif; font-size:1.1rem;'>TAMIU</strong><br>Laredo, TX<br><em>The Red Herring (Exactly 4h)</em>");
-
-            // Pin 3: UTRGV (Former Suspect)
-            var utrgv = L.marker([26.3051, -98.1738]).addTo(map);
-            utrgv.bindPopup("<strong style='font-family:serif; font-size:1.1rem;'>UTRGV</strong><br>Edinburg, TX<br><em>Former Suspect</em>");
-
-            // Pin 4: TAMU-CC (Coastal Pivot)
-            var tamucc = L.marker([27.7126, -97.3241]).addTo(map);
-            tamucc.bindPopup("<strong style='font-family:serif; font-size:1.1rem;'>TAMU-CC</strong><br>Corpus Christi, TX<br><em>The Coastal Pivot</em>");
+            L.marker([27.5250, -97.8814]).addTo(map).bindPopup("<b>TAMU-Kingsville</b>");
+            L.marker([27.7126, -97.3241]).addTo(map).bindPopup("<b>TAMU-CC</b>");
+            L.marker([27.5735, -99.4316]).addTo(map).bindPopup("<b>TAMIU</b>");
+            L.marker([29.5842, -98.6189]).addTo(map).bindPopup("<b>UTSA</b>");
+            L.marker([29.7208, -95.3422]).addTo(map).bindPopup("<b>University of Houston</b>");
+            L.marker([29.8886, -97.9384]).addTo(map).bindPopup("<b>Texas State University</b>");
         });
     </script>
 </body>
