@@ -24,10 +24,10 @@ html { scroll-behavior: smooth; }
 body { background: var(--cream); color: var(--ink); font-family: 'EB Garamond', serif; overflow-x: hidden; cursor: none; font-size: 18px; }
 
 /* ── CUSTOM CURSOR ── */
-#cursor { position: fixed; width: 8px; height: 8px; background: var(--ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform .1s; }
-#cursor-ring { position: fixed; width: 28px; height: 28px; border: 1px solid var(--ink); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: left .08s, top .08s; opacity: .4; }
-.dark-cursor #cursor { background: var(--dp-text); }
-.dark-cursor #cursor-ring { border-color: var(--dp-gold); }
+#cursor{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}
+#cursor-ring{position:fixed;width:28px;height:28px;border:1px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4}
+.dark-cursor #cursor{background:var(--dp-text)}
+.dark-cursor #cursor-ring{border-color:var(--dp-gold)}
 
 /* ── PG MODE TOGGLE ── */
 #pg-toggle { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 5000; display: flex; align-items: center; gap: .6rem; background: var(--cream); border: 1px solid rgba(10,10,10,.2); padding: .55rem 1rem; cursor: pointer; font-family: 'Space Mono', monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; transition: background .2s, border-color .2s; user-select: none; }
@@ -42,9 +42,17 @@ body.pg-mode .pg-indicator::after { transform: translateX(14px); }
 .dark-page body.pg-mode .pg-indicator { background: var(--dp-gold); }
 
 /* PG mode — censor words */
-.pg-word { transition: filter .2s, color .2s; }
-body.pg-mode .pg-word { filter: blur(4px); color: transparent; background: rgba(10,10,10,.15); border-radius: 2px; padding: 0 2px; user-select: none; }
+.pg-word {
+  transition: all 0.2s;
+}
 
+body.pg-mode .pg-word {
+  /* We remove the blur and transparent text so the smiley face is fully visible */
+  color: inherit;
+  background: transparent;
+  filter: none;
+  user-select: none;
+}
 /* ── NAV ── */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; background: rgba(252, 250, 247, .96); border-bottom: 1px solid rgba(10, 10, 10, .1); backdrop-filter: blur(10px); }
 nav.dark-nav { background: rgba(15, 12, 10, .97); border-bottom-color: rgba(200, 169, 106, .12); }
@@ -107,20 +115,108 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
 .ink-word { color: transparent; background: rgba(200, 169, 106, .15); padding: 0 4px; border-radius: 3px; cursor: crosshair; transition: color 0.3s, background 0.3s; margin-right: 4px; display: inline-block; }
 .ink-word.revealed { color: var(--dp-text); background: transparent; }
 
-/* ── ENVELOPES (Letters & Portrait) ── */
-.envelope-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; padding: 2rem 3rem; max-width: 1000px; margin: 0 auto; }
-.envelope { background: #e0d8c8; border: 1px solid rgba(10, 10, 10, .15); padding: 2rem; text-align: center; cursor: pointer; position: relative; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-.dark-page .envelope { background: var(--dp-surface); border-color: var(--dp-border); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-.envelope:hover { transform: translateY(-5px); border-color: var(--rose); }
-.dark-page .envelope:hover { border-color: var(--dp-gold); }
-.envelope::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 30px; background: rgba(255,255,255,0.4); clip-path: polygon(0 0, 50% 100%, 100% 0); transition: all 0.4s ease; }
-.dark-page .envelope::before { background: rgba(200, 169, 106, 0.1); }
-.envelope.open::before { transform: rotateX(180deg); transform-origin: top; }
-.letter-modal { position: fixed; inset: 0; background: rgba(10, 10, 10, 0.8); z-index: 9000; display: none; align-items: center; justify-content: center; padding: 2rem; }
-.letter-content { background: var(--cream); padding: 3rem; max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; text-align: left; position: relative; }
-.dark-page .letter-content { background: var(--dp-surface); border: 1px solid var(--dp-border); color: var(--dp-text); max-width: 800px; }
-.close-letter { position: absolute; top: 1rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; font-family: 'Space Mono'; transition: color .2s; }
-.dark-page .close-letter:hover { color: var(--dp-gold); }
+/* ══════════════════════════════════
+   MESSAGES / FLAT GRAPHIC ENVELOPES
+══════════════════════════════════ */
+#page-messages { background: #fff5f7; position: relative; overflow: hidden; }
+
+/* Pink background blobs to keep the beautiful gradient backdrop */
+.glass-blob { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; opacity: 0.7; }
+.blob-1 { top: 10%; left: 15%; width: 350px; height: 350px; background: rgba(255, 154, 162, 0.4); }
+.blob-2 { bottom: 10%; right: 10%; width: 450px; height: 450px; background: rgba(255, 183, 178, 0.45); }
+
+/* GRID FIX: Forces exactly 3 columns */
+.envelope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: center; max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+
+/* The Base Envelope Structure */
+.envelope-wrapper { perspective: 1000px; cursor: pointer; }
+.envelope { 
+    position: relative; width: 100%; height: 210px; 
+    background: #fdf2f6; 
+    box-shadow: 0 15px 35px rgba(255, 107, 129, 0.15); 
+    transition: transform 0.3s ease; 
+    border-radius: 2px;
+    overflow: hidden; /* FIX: Hides the letter entirely until it slides out */
+}
+.envelope-wrapper:hover .envelope { transform: translateY(-5px); }
+
+/* The Physical Letter inside */
+.letter-peek { 
+    position: absolute; top: 100%; left: 15px; right: 15px; height: 140px; 
+    background: #fff; z-index: 1; 
+    transition: top 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    border: 1px solid rgba(255,182,193,0.3); border-radius: 2px; 
+}
+.envelope.open .letter-peek { top: 15px; } /* Slides up beautifully */
+
+/* The Bottom Pocket - SVG REMOVED SO THERE IS NO "X" */
+.env-pocket { 
+    position: absolute; inset: 0; z-index: 3; 
+    background-color: #fdf2f6; 
+    /* Cuts out the top triangle so the flap can fold into it */
+    clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* The Top Triangle Flap */
+.env-flap { 
+    position: absolute; top: 0; left: 0; right: 0; height: 50%; 
+    background-color: #fdf2f6; 
+    clip-path: polygon(0 0, 100% 0, 50% 100%); 
+    transform-origin: top; z-index: 5; 
+    transition: transform 0.5s ease; 
+    /* Draws a slightly darker pink line just on the edge of the triangle flap */
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L50,100 L100,0' stroke='%23e6c8d3' stroke-width='3' fill='none' /%3E%3C/svg%3E");
+    background-size: 100% 100%;
+}
+.envelope.open .env-flap { transform: rotateX(180deg); }
+
+/* The Bold Sans-Serif Text */
+.env-title {
+    position: absolute;
+    width: 100%;
+    /* Pushed down to the bottom half so the heart is clear */
+    top: 75%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Updated to Dancing Script */
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600; /* Adjust between 400-700 if you want it bolder */
+    font-style: normal;
+    /* Keeps the smaller text size */
+    font-size: 1.35rem; 
+    color: var(--charcoal);
+    text-align: center;
+    z-index: 4;
+    pointer-events: none;
+}
+.envelope.open .env-title { opacity: 0; transition: opacity 0.2s; }
+
+/* The Square Pink Seal */
+.env-seal { 
+    position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: #ff66a3; 
+    width: 36px; height: 36px; 
+    display: flex; align-items: center; justify-content: center; 
+    color: white; font-size: 1rem; 
+    z-index: 7; 
+    transition: transform 0.4s ease, opacity 0.3s ease; 
+    border-radius: 2px;
+}
+.envelope.open .env-seal { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+
+/* The Centered Modal (Reading the opened letter) */
+#letter-modal { position: fixed; inset: 0; background: rgba(10,10,10,0.85); z-index: 9000; display: none; align-items: center; justify-content: center; padding: 2rem; opacity: 0; transition: opacity 0.4s ease; }
+#letter-modal.visible { display: flex; opacity: 1; }
+.letter-content { background: var(--cream); padding: 4rem 3.5rem; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; text-align: left; position: relative; transform: translateY(40px); transition: transform 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 1px solid rgba(10,10,10,0.05); border-radius: 4px; }
+#letter-modal.visible .letter-content { transform: translateY(0); }
+.close-letter { position: absolute; top: 1.5rem; right: 2rem; font-size: 2.2rem; cursor: pointer; font-family: 'Space Mono', monospace; color: var(--muted); transition: color 0.2s; line-height: 1; }
+.close-letter:hover { color: #ff6b81; }
+
+/* Centering the text inside the open letter modal */
+#modal-title { font-family: 'Poppins', sans-serif; font-size: 2rem; color: #ff66a3; margin-bottom: 1.5rem; font-weight: 600; text-align: center; }
+#modal-body { font-size: 1.15rem; line-height: 1.95; color: var(--charcoal); white-space: pre-wrap; font-family: 'EB Garamond', serif; width: 100%; text-align: center; }
 
 /* ── GALLERY ── */
 .photo-grid { padding: 0 3rem 6rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }

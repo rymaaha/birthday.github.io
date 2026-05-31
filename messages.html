@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Letters</title>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="letterk.png">
 </head>
 <body>
     <div id="cursor"></div>
@@ -24,32 +25,53 @@
     </nav>
 
     <div class="page active" id="page-messages">
-        <div style="text-align: center; padding: 4rem 2rem 2rem;" class="fade-in">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem;">Letters</h2>
-            <p style="color: var(--muted); font-style: italic;">Things you need to hear at different times.</p>
-        </div>
+        <div class="glass-blob blob-1"></div>
+        <div class="glass-blob blob-2"></div>
 
-        <div class="envelope-grid fade-in">
-            <div class="envelope" onclick="this.classList.add('open'); setTimeout(() => openLetter('Open when you are stressed', 'Take a deep breath. You are incredibly capable and you are going to figure this out, just like you always do.'), 400)">
-                <h3 style="font-family: 'Space Mono'; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--rose);">OPEN WHEN</h3>
-                <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 15px;">You're stressed</p>
-            </div>
-            <div class="envelope" onclick="this.classList.add('open'); setTimeout(() => openLetter('Open when you are hungry', 'Go get a snack right now. Everything seems worse on an empty stomach. Treat yourself to something good.'), 400)">
-                <h3 style="font-family: 'Space Mono'; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--rose);">OPEN WHEN</h3>
-                <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 15px;">You're hungry</p>
-            </div>
-            <div class="envelope" onclick="this.classList.add('open'); setTimeout(() => openLetter('Open when you need a laugh', 'Insert a really good inside joke here. Something specific that never fails to make her smile.'), 400)">
-                <h3 style="font-family: 'Space Mono'; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--rose);">OPEN WHEN</h3>
-                <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 15px;">You need a laugh</p>
+        <div class="messages-wrap" style="position: relative; z-index: 10; text-align: center; padding: 4rem 2rem 2rem;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 0.5rem;">Letters</h2>
+            <p style="color: var(--muted); font-style: italic; margin-bottom: 1.5rem;">things we wanted to say out loud, written down instead</p>
+            
+            <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff66a3; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 3.5rem;">Open When...</h3>
+            
+            <div class="envelope-grid fade-in">
+              
+              <div class="envelope-wrapper" onclick="openEnvelope(this, 'You\'re stressed', 'Take a deep breath.\n\nYou are incredibly capable and you are going to figure this out, just like you always do.')">
+                <div class="envelope">
+                  <div class="letter-peek"></div>
+                  <div class="env-flap"></div>
+                  <div class="env-title">You're stressed</div>
+                  <div class="env-seal">❤</div>
+                </div>
+              </div>
+
+              <div class="envelope-wrapper" onclick="openEnvelope(this, 'You\'re hungry', 'Go get a snack right now.\n\nEverything seems worse on an empty stomach. Treat yourself to something good.')">
+                <div class="envelope">
+                  <div class="letter-peek"></div>
+                  <div class="env-flap"></div>
+                  <div class="env-title">You're hungry</div>
+                  <div class="env-seal">❤</div>
+                </div>
+              </div>
+
+              <div class="envelope-wrapper" onclick="openEnvelope(this, 'You need a laugh', 'Insert a really good inside joke here.\n\nSomething specific that never fails to make her smile.')">
+                <div class="envelope">
+                  <div class="letter-peek"></div>
+                  <div class="env-flap"></div>
+                  <div class="env-title">You need a laugh</div>
+                  <div class="env-seal">❤</div>
+                </div>
+              </div>
+
             </div>
         </div>
     </div>
 
-    <div id="letter-modal" class="letter-modal">
+    <div id="letter-modal">
         <div class="letter-content">
             <span class="close-letter" onclick="closeLetter()">×</span>
-            <h2 id="modal-title" style="font-family: 'Playfair Display', serif; color: var(--rose); margin-bottom: 1.5rem;"></h2>
-            <p id="modal-body" style="line-height: 1.8; font-size: 1.15rem;"></p>
+            <h2 id="modal-title"></h2>
+            <div id="modal-body"></div>
         </div>
     </div>
 
