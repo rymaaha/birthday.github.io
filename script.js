@@ -259,3 +259,81 @@ function closeLetter() {
         env.classList.remove('open');
     });
 }
+
+// ══════════════════════════════════
+//   MEMORY REELS LOGIC
+// ══════════════════════════════════
+
+// 1. Setup the variables so the browser knows what to look for
+let currentReelIndex = 0;
+const memoryCards = document.querySelectorAll('.memory-card'); 
+const reelsModal = document.getElementById('reels-modal');
+const reelsContainer = document.getElementById('reels-container');
+const reelItems = document.querySelectorAll('.reel-item');
+
+// 2. Open the Reels modal to the specific video clicked
+function openReel(index) {
+  if (!reelsModal) return;
+  currentReelIndex = index;
+  reelsModal.classList.add('open');
+  
+  // Calculate exactly where to scroll based on the box's height
+  const boxHeight = reelsContainer.clientHeight;
+  
+  // Jump instantly to the right video inside the floating box
+  reelsContainer.scrollTop = boxHeight * index;
+  
+  // Ensure the current video plays
+  const video = reelItems[index].querySelector('video');
+  if (video) video.play();
+}
+
+// 3. Close the modal and scroll the grid to where they left off
+function closeReel() {
+  if (!reelsModal) return;
+  reelsModal.classList.remove('open');
+  
+  // Pause all videos so they don't play in the background
+  document.querySelectorAll('.reel-item video').forEach(v => v.pause());
+  
+  // Scroll the background grid to the exact video she was just watching
+  if (memoryCards[currentReelIndex]) {
+    memoryCards[currentReelIndex].scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'center' 
+    });
+  }
+}
+
+// 4. The floating down arrow button functionality
+function nextReel() {
+  if (currentReelIndex < reelItems.length - 1) {
+    const boxHeight = reelsContainer.clientHeight;
+    
+    reelsContainer.scrollTo({
+      top: boxHeight * (currentReelIndex + 1),
+      behavior: 'smooth'
+    });
+  }
+}
+
+// 5. Keep track of which video she is currently looking at
+if (reelsContainer) {
+  const reelObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target.querySelector('video');
+      
+      if (entry.isIntersecting) {
+        currentReelIndex = parseInt(entry.target.dataset.index);
+        if (video) video.play();
+      } else {
+        if (video) video.pause();
+      }
+    });
+  }, { threshold: 0.6 }); 
+
+  reelItems.forEach((item, index) => {
+    item.dataset.index = index;
+    reelObserver.observe(item);
+  });
+}
