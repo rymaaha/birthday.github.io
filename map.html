@@ -7,6 +7,229 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── DETECTIVE BOARD AESTHETIC ── */
+        .board-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .case-stamp {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: #c9847a;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid #c9847a;
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(201,132,122,0.1);
+        }
+        .board-header h2 {
+            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .board-header p {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            color: var(--muted);
+            font-size: 1.2rem;
+        }
+
+        /* The Cork Board */
+        .cork-board {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 3rem;
+            background-color: #2a2622;
+            background-image: 
+                radial-gradient(#3d3731 15%, transparent 16%),
+                radial-gradient(#3d3731 15%, transparent 16%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            border: 15px solid #1c1815;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.8), 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        /* ── PINS & TACKS ── */
+        .tack {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            box-shadow: inset -2px -2px 4px rgba(0,0,0,0.5), 2px 4px 6px rgba(0,0,0,0.6);
+            z-index: 5;
+        }
+        .tack-red { background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a); }
+        .tack-gold { background: radial-gradient(circle at 30% 30%, #fcc419, #e67700); }
+        .tack-blue { background: radial-gradient(circle at 30% 30%, #339af0, #1864ab); }
+        .tack-white { background: radial-gradient(circle at 30% 30%, #f8f9fa, #adb5bd); }
+
+        /* ── GRID SYSTEM FOR CARDS ── */
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        /* ── PIN CARDS (Universities) ── */
+        .pin-card {
+            background: #f5f0e8;
+            color: #1c1c1c;
+            padding: 2.5rem 1.5rem 1.5rem;
+            position: relative;
+            box-shadow: 3px 6px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+            text-align: left;
+            z-index: 2;
+        }
+        .pin-card:hover {
+            transform: scale(1.03) rotate(0deg) !important;
+            z-index: 10;
+        }
+        .evidence-grid .pin-card:nth-child(1) { transform: rotate(-1.5deg); }
+        .evidence-grid .pin-card:nth-child(2) { transform: rotate(1.8deg); }
+        .evidence-grid .pin-card:nth-child(3) { transform: rotate(-2.5deg); }
+        .evidence-grid .pin-card:nth-child(4) { transform: rotate(2deg); }
+        .evidence-grid .pin-card:nth-child(5) { transform: rotate(1.2deg); }
+        .evidence-grid .pin-card:nth-child(6) { transform: rotate(-1deg); }
+
+        .card-uni-name {
+            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+            color: var(--ink);
+        }
+        .card-city {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .card-note {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-family: 'EB Garamond', serif;
+        }
+        .card-evidence {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            background: rgba(10,10,10,0.05);
+            padding: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 2px solid var(--rose);
+        }
+        .card-verdict {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            padding: 0.3rem 0.6rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .verdict-suspect { background: #ffe3e3; color: #c92a2a; border: 1px solid #ff8787; }
+        .verdict-maybe { background: #fff3bf; color: #e67700; border: 1px solid #fcc419; }
+        .verdict-unlikely { background: #f1f3f5; color: #495057; border: 1px solid #ced4da; }
+
+        /* ── STICKY NOTES ── */
+        .sticky-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            margin-bottom: -1rem;
+        }
+        .sticky {
+            width: 230px;
+            padding: 1.5rem;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            line-height: 1.6;
+            color: #1c1c1c;
+            position: relative;
+            z-index: 8;
+        }
+        .sticky-yellow { background: #feff9c; transform: rotate(-3deg); }
+        .sticky-pink { background: #ff7eb9; transform: rotate(2deg); }
+        .sticky-blue { background: #7afcff; transform: rotate(-1.5deg); }
+        .sticky-green { background: #a8ffb2; transform: rotate(1deg); }
+
+        /* ── MAP CLIPPING ── */
+        .map-clipping {
+            background: #f5f0e8;
+            padding: 1rem 1rem 3.5rem 1rem;
+            box-shadow: 3px 8px 25px rgba(0,0,0,0.6);
+            transform: rotate(0.5deg);
+            position: relative;
+            z-index: 1;
+        }
+        .map-clipping::after {
+            content: "EXHIBIT A: THE TEXAS TRIANGLE";
+            position: absolute;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            color: #1c1c1c;
+            opacity: 0.8;
+            font-weight: bold;
+        }
+        #texas-map {
+            height: 500px;
+            border: 1px solid rgba(10,10,10,0.3);
+            filter: sepia(30%) contrast(110%) brightness(95%);
+        }
+
+        /* Map Route Labels */
+        .route-label {
+            background: rgba(10,10,10,0.85);
+            color: #c8a96a;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem !important;
+            border: 1px solid #c8a96a;
+            white-space: nowrap;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: max-content !important;
+            height: auto !important;
+        }
+
+        /* ── VERDICT BANNER ── */
+        .verdict-banner {
+            margin-top: 4rem;
+            background: rgba(10,10,10,0.9);
+            color: #c8a96a;
+            text-align: center;
+            padding: 1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            border: 1px solid #c8a96a;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -25,52 +248,147 @@
       </ul>
     </nav>
 
-    <div class="page active fade-in" id="page-map" style="padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; text-align: center; margin-top: 60px;">
-      <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 1rem;">The Texas Investigation</h2>
+    <div class="page active fade-in" id="page-map" style="padding-top: 100px;">
       
-      <p style="color: var(--muted); font-style: italic; margin-bottom: 3rem; line-height: 1.8; max-width: 800px; margin-left: auto; margin-right: auto;">
-        A curated shortlist of candidates.
-      </p>
-      
-      <div id="texas-map" style="border: 1px solid rgba(10,10,10,0.15); height: 450px; margin-bottom: 3rem; z-index: 1;"></div>
+      <div class="board-header">
+        <div class="case-stamp">⚠ CASE FILE · OPERATION: WHERE IS K GOING</div>
+        <h2>The Texas Question</h2>
+        <p>evidence gathered. strings pulled. verdict pending.</p>
+      </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; text-align: left;">
-        
-        <div style="padding: 2rem; border: 1px solid var(--rose); background: rgba(201,132,122,.04);">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem; color: var(--rose);">TAMU-Kingsville</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Kingsville, TX</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">South Texas, near the border, reachable coast, strong engineering, large open campus. Often overlooked.</p>
-        </div>
+      <!-- THE CORK BOARD -->
+      <div class="cork-board">
 
-        <div style="padding: 2rem; border: 1px solid var(--rose); background: rgba(201,132,122,.04);">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem; color: var(--rose);">TAMU-CC</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Corpus Christi, TX</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Beach clue is near perfect. Strong science/engineering, specialized facilities, open campus feel.</p>
-        </div>
+          <!-- The Pinned Intro Note -->
+          <div style="background: #fdfbf7; padding: 2rem 2.5rem; max-width: 700px; margin: 0 auto 3.5rem; position: relative; box-shadow: 2px 6px 15px rgba(0,0,0,0.5); transform: rotate(-1.5deg); z-index: 5;">
+              <div class="tack tack-red"></div>
+              <p style="font-family: 'Space Mono', monospace; font-size: 0.95rem; line-height: 1.8; color: #1c1c1c; text-align: left;">
+                  <em>"Oh my god, you’re crazy."</em><br><br>
+                  Shut up. Welcome to my detective board.<br><br>
+                  This is my attempt at figuring out exactly where tf you are. I've pulled the strings on every little hint you've dropped. If it's not any of these you're lying and you actually live in Utah or some shit.
+              </p>
+          </div>
 
-        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">TAMIU</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Laredo, TX</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Border clue fits perfectly. Public/open campus, science/engineering. Note: Beach clue is weak.</p>
-        </div>
+          <!-- The Map as a pinned clipping -->
+          <div class="map-clipping">
+              <div class="tack tack-white" style="top: -6px; left: 15%;"></div>
+              <div class="tack tack-white" style="top: -6px; left: 85%;"></div>
+              <div id="texas-map"></div>
+          </div>
 
-        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">UTSA</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">San Antonio, TX · Tier 2</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Could be remembered differently. Large campus with engineering/science, public feel.</p>
-        </div>
+          <!-- Sticky Notes with Clues -->
+          <div class="sticky-container">
+              <!-- New Eliminated List Sticky -->
+              <div class="sticky sticky-pink">
+                  <div class="tack tack-red"></div>
+                  <strong style="display:block; margin-bottom:0.5rem; text-decoration:underline;">DEAD ENDS:</strong>
+                  <em>Explicitly ruled out:</em><br>
+                  - Univ of Houston<br>
+                  - Texas State Univ<br>
+                  - Texas A&M (CS)<br>
+                  - Baylor & Tech<br>
+                  - UTEP & SHSU<br>
+                  - UNT, UT Dallas, UT Tyler, SFA, TWU
+              </div>
 
-        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">University of Houston</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Houston, TX</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Huge science/medical presence. Multiple campuses, beach reachable. Note: Border clue is weak.</p>
-        </div>
+              <div class="sticky sticky-yellow">
+                  <div class="tack tack-gold"></div>
+                  <strong style="display:block; margin-bottom:0.5rem; text-decoration:underline;">CLUE CHECK:</strong>
+                  - 7 Brew in city<br>
+                  - Chick-fil-A in city<br>
+                  - Near Mexico border<br>
+                  - 1 to 2 hours from the beach!
+              </div>
 
-        <div style="padding: 2rem; border: 1px solid rgba(10,10,10,0.1); background: white;">
-            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 1.4rem;">Texas State University</h3>
-            <p style="color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 1rem;">San Marcos, TX</p>
-            <p style="color: var(--charcoal); font-size: 1.05rem; line-height: 1.6;">Campus integrated into city. Open/public feel with strong science programs.</p>
-        </div>
+              <div class="sticky sticky-green">
+                  <div class="tack tack-white"></div>
+                  <strong style="display:block; margin-bottom:0.5rem; text-decoration:underline;">CAMPUS INTEL:</strong>
+                  "Feels like a public park."<br>
+                  - 4+ Bio/Medical buildings<br>
+                  - Engineering requires pass.<br>
+                  - Separate coastal facility.
+              </div>
+
+              <div class="sticky sticky-blue">
+                  <div class="tack tack-blue"></div>
+                  <strong style="display:block; margin-bottom:0.5rem; text-decoration:underline;">DISTANCE VECTORS:</strong>
+                  → ~11h from El Paso<br>
+                  → ~8h from San Antonio<br>
+                  → ~7h 51m from Arlington<br>
+                  → ~4h 40m from Laredo<br>
+                  → Field trips to Corpus Christi and Dallas<br>
+              </div>
+          </div>
+
+          <!-- The Suspect Cards -->
+          <div class="evidence-grid">
+              
+              <!-- TAMU-Kingsville -->
+              <div class="pin-card">
+                  <div class="tack tack-red"></div>
+                  <div class="card-uni-name">TAMU-Kingsville</div>
+                  <div class="card-city">KINGSVILLE, TX · PUBLIC RESEARCH</div>
+                  <div class="card-note">South Texas. Near the border. Beach is perfectly within 1-2 hours. Strong engineering & biology programs. Fits the profile beautifully and hasn't been ruled out.</div>
+                  <div class="card-evidence">📍 Park-like Campus · Engineering Pass · Coastal Proximity</div>
+                  <span class="card-verdict verdict-suspect">PRIME SUSPECT</span>
+              </div>
+
+              <!-- TAMU-CC -->
+              <div class="pin-card">
+                  <div class="tack tack-gold"></div>
+                  <div class="card-uni-name">TAMU-CC</div>
+                  <div class="card-city">CORPUS CHRISTI, TX · PUBLIC</div>
+                  <div class="card-note">The "Coastal Pivot." Located right on the water. Beach clue is extremely strong here. Has excellent engineering and science facilities. Highly open campus feel.</div>
+                  <div class="card-evidence">📍 Coastal Facility · Strong Sciences · Open Feel</div>
+                  <span class="card-verdict verdict-suspect" style="background:#fff3bf; color:#e67700; border-color:#fcc419;">PRIME SUSPECT</span>
+              </div>
+
+              <!-- TAMIU -->
+              <div class="pin-card">
+                  <div class="tack tack-gold"></div>
+                  <div class="card-uni-name">TAMIU</div>
+                  <div class="card-city">LAREDO, TX · THE RED HERRING</div>
+                  <div class="card-note">The border clue fits perfectly. Public, open campus with science/engineering facilities. However, if she is exactly 4h 40m from Laredo, this is just a geographic anchor.</div>
+                  <div class="card-evidence">📍 Border Clue · Public Campus</div>
+                  <span class="card-verdict verdict-maybe">PERSON OF INTEREST</span>
+              </div>
+
+              <!-- UTSA -->
+              <div class="pin-card">
+                  <div class="tack tack-blue"></div>
+                  <div class="card-uni-name">UTSA</div>
+                  <div class="card-city">SAN ANTONIO, TX · TIER 2</div>
+                  <div class="card-note">A large, public campus feel with significant engineering and science infrastructure. Placed here as a strong contender in case distance clues were misremembered.</div>
+                  <div class="card-evidence">📍 Large Engineering/Science Presence</div>
+                  <span class="card-verdict verdict-maybe">PERSON OF INTEREST</span>
+              </div>
+
+              <!-- UT Arlington -->
+              <div class="pin-card">
+                  <div class="tack tack-white"></div>
+                  <div class="card-uni-name">UT Arlington</div>
+                  <div class="card-city">ARLINGTON, TX · REFERENCE POINT</div>
+                  <div class="card-note">Kept on the board primarily to track the 7 hour and 51-minute distance vector. Large engineering programs, but geography severely clashes with the border clue.</div>
+                  <div class="card-evidence">📍 Distance Anchor · Engineering Heavy</div>
+                  <span class="card-verdict verdict-unlikely">ALIBI UNCONFIRMED</span>
+              </div>
+
+              <!-- UT Austin -->
+              <div class="pin-card">
+                  <div class="tack tack-white"></div>
+                  <div class="card-uni-name">UT Austin</div>
+                  <div class="card-city">AUSTIN, TX · THE FLAGSHIP</div>
+                  <div class="card-note">Massive resources and a heavily public feel. It hasn't been explicitly ruled out yet, but the border proximity and beach clues make it highly unlikely as the true target.</div>
+                  <div class="card-evidence">📍 Massive Resources · Unlikely Geography</div>
+                  <span class="card-verdict verdict-unlikely">ALIBI UNCONFIRMED</span>
+              </div>
+
+          </div>
+
+          <!-- Verdict Banner -->
+          <div class="verdict-banner">
+              VERDICT: STILL PENDING — AWAITING FINAL CONFIRMATION
+          </div>
 
       </div>
     </div>
@@ -79,17 +397,100 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var map = L.map('texas-map').setView([29.5, -98.5], 6);
+            var map = L.map('texas-map').setView([29.0, -98.0], 6);
+            
+            // Modern base tiles
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; OpenStreetMap'
             }).addTo(map);
 
-            L.marker([27.5250, -97.8814]).addTo(map).bindPopup("<b>TAMU-Kingsville</b>");
-            L.marker([27.7126, -97.3241]).addTo(map).bindPopup("<b>TAMU-CC</b>");
-            L.marker([27.5735, -99.4316]).addTo(map).bindPopup("<b>TAMIU</b>");
-            L.marker([29.5842, -98.6189]).addTo(map).bindPopup("<b>UTSA</b>");
-            L.marker([29.7208, -95.3422]).addTo(map).bindPopup("<b>University of Houston</b>");
-            L.marker([29.8886, -97.9384]).addTo(map).bindPopup("<b>Texas State University</b>");
+            // ── CUSTOM PRIME SUSPECT ICON (RED) ──
+            var primeTargetIcon = L.divIcon({
+                className: 'custom-prime-pin',
+                html: '<div style="background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a); width: 22px; height: 22px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.6);"></div>',
+                iconSize: [22, 22],
+                iconAnchor: [11, 11],
+                popupAnchor: [0, -10]
+            });
+
+            // ── CUSTOM SECONDARY SUSPECT ICON (YELLOW/GOLD) ──
+            var secondaryTargetIcon = L.divIcon({
+                className: 'custom-secondary-pin',
+                html: '<div style="background: radial-gradient(circle at 30% 30%, #fcc419, #e67700); width: 22px; height: 22px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.6);"></div>',
+                iconSize: [22, 22],
+                iconAnchor: [11, 11],
+                popupAnchor: [0, -10]
+            });
+
+            // ── CITIES & SUSPECTS COORDINATES ──
+            var elPaso = [31.7619, -106.4850];
+            var sanAntonio = [29.4241, -98.4936];
+            var laredo = [27.5064, -99.5075];
+            var arlington = [32.7357, -97.1081];
+            
+            var kingsville = [27.5250, -97.8814];
+            var corpus = [27.7126, -97.3241];
+            var austin = [30.2672, -97.7431];
+
+            // ── ADDING THE PINS ──
+            
+            // TAMU-Kingsville gets the special Red Pin
+            L.marker(kingsville, {icon: primeTargetIcon}).addTo(map).bindPopup("<b>TAMU-Kingsville</b><br>Prime Suspect");
+            
+            // TAMU-CC gets the special Yellow Pin
+            L.marker(corpus, {icon: secondaryTargetIcon}).addTo(map).bindPopup("<b>TAMU-CC</b><br>Secondary Prime Suspect");
+            
+            // The rest use the standard Leaflet blue pin
+            L.marker(laredo).addTo(map).bindPopup("<b>TAMIU / Laredo</b><br>Reference City");
+            L.marker(sanAntonio).addTo(map).bindPopup("<b>UTSA / San Antonio</b><br>Reference City");
+            L.marker(arlington).addTo(map).bindPopup("<b>UT Arlington</b><br>Reference City");
+            L.marker(austin).addTo(map).bindPopup("<b>UT Austin</b>");
+            L.marker(elPaso).addTo(map).bindPopup("<b>El Paso</b><br>Reference City");
+
+            // ── DRAWING THE RED STRINGS (ROUTES) ──
+            
+            // String 1: El Paso to the South Texas Target Area (Kingsville)
+            L.polyline([elPaso, kingsville], {
+                color: '#c92a2a', weight: 3, dashArray: '8, 8', opacity: 0.8
+            }).addTo(map);
+
+            // String 2: San Antonio to the Target Area
+            L.polyline([sanAntonio, kingsville], {
+                color: '#e67700', weight: 3, dashArray: '8, 8', opacity: 0.8
+            }).addTo(map);
+
+            // String 3: Laredo to the Target Area
+            L.polyline([laredo, kingsville], {
+                color: '#1864ab', weight: 3, dashArray: '8, 8', opacity: 0.8
+            }).addTo(map);
+
+            // String 4: Arlington to the Target Area
+            L.polyline([arlington, kingsville], {
+                color: '#845ef7', weight: 3, dashArray: '8, 8', opacity: 0.8
+            }).addTo(map);
+
+            // ── ADDING DYNAMIC TIME/DISTANCE LABELS ──
+            
+            // Midpoint El Paso -> Kingsville
+            L.marker([29.6434, -102.1832], {
+                icon: L.divIcon({ className: 'route-label', html: 'approx. 11 hrs', iconSize: [160, 28] })
+            }).addTo(map);
+
+            // Midpoint San Antonio -> Kingsville
+            L.marker([28.4745, -98.1885], {
+                icon: L.divIcon({ className: 'route-label', html: 'approx. 8 hrs', iconSize: [160, 28] })
+            }).addTo(map);
+
+            // Midpoint Laredo -> Kingsville
+            L.marker([27.5157, -98.6944], {
+                icon: L.divIcon({ className: 'route-label', html: 'approx. 4h 40m', iconSize: [160, 28] })
+            }).addTo(map);
+
+            // Midpoint Arlington -> Kingsville
+            L.marker([30.1303, -97.4947], {
+                icon: L.divIcon({ className: 'route-label', html: 'approx. 7h 51m', iconSize: [160, 28] })
+            }).addTo(map);
+
         });
     </script>
 </body>
