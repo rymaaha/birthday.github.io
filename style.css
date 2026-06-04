@@ -545,3 +545,41 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
   #reels-next { right: 1.5rem; bottom: 1.5rem; width: 40px; height: 40px; font-size: 1.2rem; }
   #reels-close { top: 1.5rem; right: 1.5rem; font-size: 1.5rem; }
 }
+
+/* ══════════════════════════════════
+   CUTE MARGIN STICKERS (DUDU BUBU)
+══════════════════════════════════ */
+.sticker {
+  position: absolute;
+  width: 140px; /* Adjust this to make them bigger/smaller */
+  z-index: 10; 
+  pointer-events: none; /* Stops them from blocking clicks/scrolls */
+  opacity: 0.95;
+}
+.sticker img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.15)); /* Cute sticker shadow */
+}
+
+/* Positioning them on the sides */
+.sticker.left { left: 4%; }
+.sticker.right { right: 4%; }
+
+/* Scattering them vertically down the page with cute random tilts */
+.s1 { top: 15%; transform: rotate(-8deg); }
+.s2 { top: 23%; transform: rotate(12deg); }
+.s3 { top: 35%; transform: rotate(-5deg); }
+.s4 { top: 44%; transform: rotate(9deg); }
+.s5 { top: 55%; transform: rotate(-11deg); }
+.s6 { top: 62%; transform: rotate(6deg); }
+.s7 { top: 73%; transform: rotate(-7deg); }
+.s8 { top: 81%; transform: rotate(10deg); }
+.s9 { top: 90%; transform: rotate(-4deg); }
+.s10 { top: 95%; transform: rotate(8deg); }
+.s11 { top: 98%; left: 10%; transform: rotate(-9deg); }
+
+/* Hide on mobile so they don't cover the text on tiny phone screens */
+@media(max-width: 900px) {
+  .sticker { display: none; }
+}
