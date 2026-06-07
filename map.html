@@ -138,6 +138,7 @@
             text-transform: uppercase;
         }
         .verdict-suspect { background: #ffe3e3; color: #c92a2a; border: 1px solid #ff8787; }
+        .verdict-confirmed { background: #d3f9d8; color: #2b8a3e; border: 1px solid #b2f2bb; }
         .verdict-maybe { background: #fff3bf; color: #e67700; border: 1px solid #fcc419; }
         .verdict-unlikely { background: #f1f3f5; color: #495057; border: 1px solid #ced4da; }
 
@@ -253,32 +254,28 @@
       <div class="board-header">
         <div class="case-stamp">⚠ CASE FILE · OPERATION: WHERE IS KARIME</div>
         <h2>The Texas Question</h2>
-        <p>evidence gathered. strings pulled. verdict pending.</p>
+        <p>evidence gathered. strings pulled. case closed.</p>
       </div>
 
-      <!-- THE CORK BOARD -->
       <div class="cork-board">
 
-          <!-- The Pinned Intro Note -->
-          <div style="background: #fdfbf7; padding: 2rem 2.5rem; max-width: 700px; margin: 0 auto 3.5rem; position: relative; box-shadow: 2px 6px 15px rgba(0,0,0,0.5); transform: rotate(-1.5deg); z-index: 5;">
+          <div style="background: #fdfbf7; padding: 2rem 2.5rem; max-width: 750px; margin: 0 auto 3.5rem; position: relative; box-shadow: 2px 6px 15px rgba(0,0,0,0.5); transform: rotate(-1.5deg); z-index: 5;">
               <div class="tack tack-red"></div>
               <p style="font-family: 'Space Mono', monospace; font-size: 0.95rem; line-height: 1.8; color: #1c1c1c; text-align: left;">
                   <em>"Oh my god, you’re crazy."</em><br><br>
                   Shut up. Welcome to my detective board.<br><br>
-                  This is my attempt at figuring out exactly where tf you are. I've pulled the strings on every little hint you've dropped. If it's not any of these you're lying and you actually live in Utah or some shit.
+                  <b>UPDATE:</b> This was my board <i>before</i> I found out you actually went to UTRGV. I should've known based on literally all the information, your followers, pics sent, everything. All the clues basically but you threw me off because you're a gaslighter. It's okay though, you're pretty anyway.<br><br>
+                  Here lies the original evidence, the runner-ups, and the ridiculous amount of research I did before the truth came out.
               </p>
           </div>
 
-          <!-- The Map as a pinned clipping -->
           <div class="map-clipping">
               <div class="tack tack-white" style="top: -6px; left: 15%;"></div>
               <div class="tack tack-white" style="top: -6px; left: 85%;"></div>
               <div id="texas-map"></div>
           </div>
 
-          <!-- Sticky Notes with Clues -->
           <div class="sticky-container">
-              <!-- New Eliminated List Sticky -->
               <div class="sticky sticky-pink">
                   <div class="tack tack-red"></div>
                   <strong style="display:block; margin-bottom:0.5rem; text-decoration:underline;">DEAD ENDS:</strong>
@@ -293,11 +290,12 @@
 
               <div class="sticky sticky-yellow">
                   <div class="tack tack-gold"></div>
-                  <strong style="display:block; margin-bottom:0.5rem; text-decoration:underline;">CLUE CHECK:</strong>
+                  <strong style="display:block; margin-bottom:0.5rem; text-decoration:underline;">THE CLUES:</strong>
                   - 7 Brew in city<br>
                   - Chick-fil-A in city<br>
                   - Near Mexico border<br>
-                  - 1 to 2 hours from the beach!
+                  - 1 to 2 hours from beach<br>
+                  - Some acronym like "USAR" (I was so wrong)
               </div>
 
               <div class="sticky sticky-green">
@@ -316,78 +314,70 @@
                   → ~8h from San Antonio<br>
                   → ~7h 51m from Arlington<br>
                   → ~4h 40m from Laredo<br>
-                  → Field trips to Corpus Christi and Dallas<br>
+                  → Field trips to Corpus Christi
               </div>
           </div>
 
-          <!-- The Suspect Cards -->
           <div class="evidence-grid">
               
-              <!-- TAMU-Kingsville -->
-              <div class="pin-card">
+              <div class="pin-card" style="background: #fffdfa; border: 2px solid #c92a2a;">
                   <div class="tack tack-red"></div>
-                  <div class="card-uni-name">TAMU-Kingsville</div>
-                  <div class="card-city">KINGSVILLE, TX · PUBLIC RESEARCH</div>
-                  <div class="card-note">South Texas. Near the border. Beach is perfectly within 1-2 hours. Strong engineering & biology programs. Fits the profile beautifully and hasn't been ruled out.</div>
-                  <div class="card-evidence">📍 Park-like Campus · Engineering Pass · Coastal Proximity</div>
-                  <span class="card-verdict verdict-suspect">PRIME SUSPECT</span>
+                  <div class="card-uni-name">UTRGV</div>
+                  <div class="card-city">EDINBURG / BROWNSVILLE · THE TRUTH</div>
+                  <div class="card-note">The followers, the border, the beach... it was right in front of my face. The acronym I thought was "USAR" was literally just UTRGV misremembered. You gaslit me, but case closed.</div>
+                  <div class="card-evidence">📍 Border Adjacent · All Clues Match Perfectly</div>
+                  <span class="card-verdict verdict-confirmed">TARGET CONFIRMED</span>
               </div>
 
-              <!-- TAMU-CC -->
+              <div class="pin-card">
+                  <div class="tack tack-gold"></div>
+                  <div class="card-uni-name">TAMU-Kingsville</div>
+                  <div class="card-city">KINGSVILLE, TX · FORMER PRIME SUSPECT</div>
+                  <div class="card-note">I was so incredibly sure it was this one. South Texas, near the border, beach is within 1-2 hours. Strong engineering & biology programs. It was a great theory until you ruined it.</div>
+                  <div class="card-evidence">📍 Park-like Campus · Coastal Proximity</div>
+                  <span class="card-verdict verdict-suspect" style="background:#f1f3f5; color:#495057; border-color:#ced4da;">DEBUNKED</span>
+              </div>
+
               <div class="pin-card">
                   <div class="tack tack-gold"></div>
                   <div class="card-uni-name">TAMU-CC</div>
-                  <div class="card-city">CORPUS CHRISTI, TX · PUBLIC</div>
-                  <div class="card-note">The "Coastal Pivot." Located right on the water. Beach clue is extremely strong here. Has excellent engineering and science facilities. Highly open campus feel.</div>
-                  <div class="card-evidence">📍 Coastal Facility · Strong Sciences · Open Feel</div>
-                  <span class="card-verdict verdict-suspect" style="background:#fff3bf; color:#e67700; border-color:#fcc419;">PRIME SUSPECT</span>
+                  <div class="card-city">CORPUS CHRISTI, TX · THE COASTAL CONTENDER</div>
+                  <div class="card-note">Located right on the water. The beach clue was extremely strong here. Has excellent engineering and science facilities. Also heavily debated on the board.</div>
+                  <div class="card-evidence">📍 Coastal Facility · Strong Sciences</div>
+                  <span class="card-verdict verdict-suspect" style="background:#f1f3f5; color:#495057; border-color:#ced4da;">DEBUNKED</span>
               </div>
 
-              <!-- TAMIU -->
-              <div class="pin-card">
-                  <div class="tack tack-gold"></div>
-                  <div class="card-uni-name">TAMIU</div>
-                  <div class="card-city">LAREDO, TX · THE RED HERRING</div>
-                  <div class="card-note">The border clue fits perfectly. Public, open campus with science/engineering facilities. However, if she is exactly 4h 40m from Laredo, this is just a geographic anchor.</div>
-                  <div class="card-evidence">📍 Border Clue · Public Campus</div>
-                  <span class="card-verdict verdict-maybe">PERSON OF INTEREST</span>
-              </div>
-
-              <!-- UTSA -->
               <div class="pin-card">
                   <div class="tack tack-blue"></div>
+                  <div class="card-uni-name">TAMIU</div>
+                  <div class="card-city">LAREDO, TX · THE RED HERRING</div>
+                  <div class="card-note">The border clue fit perfectly. Public, open campus. However, since you said it was exactly 4h 40m FROM Laredo, this ended up just being a geographic anchor point.</div>
+                  <div class="card-evidence">📍 Border Clue · Public Campus</div>
+                  <span class="card-verdict verdict-maybe" style="background:#f1f3f5; color:#495057; border-color:#ced4da;">DEBUNKED</span>
+              </div>
+
+              <div class="pin-card">
+                  <div class="tack tack-white"></div>
                   <div class="card-uni-name">UTSA</div>
                   <div class="card-city">SAN ANTONIO, TX · TIER 2</div>
                   <div class="card-note">A large, public campus feel with significant engineering and science infrastructure. Placed here as a strong contender in case distance clues were misremembered.</div>
                   <div class="card-evidence">📍 Large Engineering/Science Presence</div>
-                  <span class="card-verdict verdict-maybe">PERSON OF INTEREST</span>
+                  <span class="card-verdict verdict-maybe" style="background:#f1f3f5; color:#495057; border-color:#ced4da;">DEBUNKED</span>
               </div>
 
-              <!-- UT Arlington -->
               <div class="pin-card">
                   <div class="tack tack-white"></div>
                   <div class="card-uni-name">UT Arlington</div>
                   <div class="card-city">ARLINGTON, TX · REFERENCE POINT</div>
-                  <div class="card-note">Kept on the board primarily to track the 7 hour and 51-minute distance vector. Large engineering programs, but geography severely clashes with the border clue.</div>
+                  <div class="card-note">Kept on the board primarily to track the 7 hour and 51-minute distance vector. Large engineering programs, but geography severely clashed with the border clue.</div>
                   <div class="card-evidence">📍 Distance Anchor · Engineering Heavy</div>
-                  <span class="card-verdict verdict-unlikely">ALIBI UNCONFIRMED</span>
-              </div>
-
-              <!-- UT Austin -->
-              <div class="pin-card">
-                  <div class="tack tack-white"></div>
-                  <div class="card-uni-name">UT Austin</div>
-                  <div class="card-city">AUSTIN, TX · THE FLAGSHIP</div>
-                  <div class="card-note">Massive resources and a heavily public feel. It hasn't been explicitly ruled out yet, but the border proximity and beach clues make it highly unlikely as the true target.</div>
-                  <div class="card-evidence">📍 Massive Resources · Unlikely Geography</div>
-                  <span class="card-verdict verdict-unlikely">ALIBI UNCONFIRMED</span>
+                  <span class="card-verdict verdict-unlikely">ALIBI CLEARED</span>
               </div>
 
           </div>
 
-          <!-- Verdict Banner -->
-          <div class="verdict-banner">
-              VERDICT: STILL PENDING — AWAITING FINAL CONFIRMATION
+          <div class="verdict-banner" style="background: rgba(43, 138, 62, 0.1); color: #40c057; border-color: #40c057;">
+              VERDICT: CASE CLOSED — TARGET LOCATED AT UTRGV
           </div>
 
       </div>
@@ -397,7 +387,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var map = L.map('texas-map').setView([29.0, -98.0], 6);
+            var map = L.map('texas-map').setView([28.0, -98.5], 6);
             
             // Modern base tiles
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -428,66 +418,66 @@
             var laredo = [27.5064, -99.5075];
             var arlington = [32.7357, -97.1081];
             
+            var utrgv = [26.3051, -98.1738]; // The Actual Truth
             var kingsville = [27.5250, -97.8814];
             var corpus = [27.7126, -97.3241];
-            var austin = [30.2672, -97.7431];
 
             // ── ADDING THE PINS ──
             
-            // TAMU-Kingsville gets the special Red Pin
-            L.marker(kingsville, {icon: primeTargetIcon}).addTo(map).bindPopup("<b>TAMU-Kingsville</b><br>Prime Suspect");
+            // UTRGV gets the special Red Pin now!
+            L.marker(utrgv, {icon: primeTargetIcon}).addTo(map).bindPopup("<b>UTRGV</b><br>TARGET CONFIRMED");
             
-            // TAMU-CC gets the special Yellow Pin
-            L.marker(corpus, {icon: secondaryTargetIcon}).addTo(map).bindPopup("<b>TAMU-CC</b><br>Secondary Prime Suspect");
+            // Kingsville & Corpus downgraded to Yellow Pins
+            L.marker(kingsville, {icon: secondaryTargetIcon}).addTo(map).bindPopup("<b>TAMU-Kingsville</b><br>Former Suspect");
+            L.marker(corpus, {icon: secondaryTargetIcon}).addTo(map).bindPopup("<b>TAMU-CC</b><br>Former Suspect");
             
             // The rest use the standard Leaflet blue pin
             L.marker(laredo).addTo(map).bindPopup("<b>TAMIU / Laredo</b><br>Reference City");
             L.marker(sanAntonio).addTo(map).bindPopup("<b>UTSA / San Antonio</b><br>Reference City");
             L.marker(arlington).addTo(map).bindPopup("<b>UT Arlington</b><br>Reference City");
-            L.marker(austin).addTo(map).bindPopup("<b>UT Austin</b>");
             L.marker(elPaso).addTo(map).bindPopup("<b>El Paso</b><br>Reference City");
 
-            // ── DRAWING THE RED STRINGS (ROUTES) ──
+            // ── DRAWING THE RED STRINGS (ROUTES) TO UTRGV ──
             
-            // String 1: El Paso to the South Texas Target Area (Kingsville)
-            L.polyline([elPaso, kingsville], {
+            // String 1: El Paso to UTRGV
+            L.polyline([elPaso, utrgv], {
                 color: '#c92a2a', weight: 3, dashArray: '8, 8', opacity: 0.8
             }).addTo(map);
 
-            // String 2: San Antonio to the Target Area
-            L.polyline([sanAntonio, kingsville], {
+            // String 2: San Antonio to UTRGV
+            L.polyline([sanAntonio, utrgv], {
                 color: '#e67700', weight: 3, dashArray: '8, 8', opacity: 0.8
             }).addTo(map);
 
-            // String 3: Laredo to the Target Area
-            L.polyline([laredo, kingsville], {
+            // String 3: Laredo to UTRGV
+            L.polyline([laredo, utrgv], {
                 color: '#1864ab', weight: 3, dashArray: '8, 8', opacity: 0.8
             }).addTo(map);
 
-            // String 4: Arlington to the Target Area
-            L.polyline([arlington, kingsville], {
+            // String 4: Arlington to UTRGV
+            L.polyline([arlington, utrgv], {
                 color: '#845ef7', weight: 3, dashArray: '8, 8', opacity: 0.8
             }).addTo(map);
 
             // ── ADDING DYNAMIC TIME/DISTANCE LABELS ──
             
-            // Midpoint El Paso -> Kingsville
-            L.marker([29.6434, -102.1832], {
+            // Midpoint El Paso -> UTRGV
+            L.marker([29.0, -102.3], {
                 icon: L.divIcon({ className: 'route-label', html: 'approx. 11 hrs', iconSize: [160, 28] })
             }).addTo(map);
 
-            // Midpoint San Antonio -> Kingsville
-            L.marker([28.4745, -98.1885], {
+            // Midpoint San Antonio -> UTRGV
+            L.marker([27.86, -98.33], {
                 icon: L.divIcon({ className: 'route-label', html: 'approx. 8 hrs', iconSize: [160, 28] })
             }).addTo(map);
 
-            // Midpoint Laredo -> Kingsville
-            L.marker([27.5157, -98.6944], {
+            // Midpoint Laredo -> UTRGV
+            L.marker([26.90, -98.83], {
                 icon: L.divIcon({ className: 'route-label', html: 'approx. 4h 40m', iconSize: [160, 28] })
             }).addTo(map);
 
-            // Midpoint Arlington -> Kingsville
-            L.marker([30.1303, -97.4947], {
+            // Midpoint Arlington -> UTRGV
+            L.marker([29.51, -97.63], {
                 icon: L.divIcon({ className: 'route-label', html: 'approx. 7h 51m', iconSize: [160, 28] })
             }).addTo(map);
 
