@@ -339,13 +339,12 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
     top: 75%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Updated to Dancing Script */
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-weight: 600; /* Adjust between 400-700 if you want it bolder */
-    font-style: normal;
+    /* Updated to Playfair Display to match the subheading */
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; 
+    font-style: italic;
     /* Keeps the smaller text size */
-    font-size: 1.35rem; 
+    font-size: 1.2rem; 
     color: var(--charcoal);
     text-align: center;
     z-index: 4;

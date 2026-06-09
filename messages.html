@@ -6,6 +6,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="letterk.png">
+    <style>
+        .envelope-grid { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 2rem !important; max-width: 1000px !important; margin: 0 auto !important; padding: 0 2rem !important; }
+        @media (max-width: 900px) { .envelope-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
@@ -30,44 +34,48 @@
 
         <div class="messages-wrap" style="position: relative; z-index: 10; text-align: center; padding: 4rem 2rem 2rem;">
             <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 0.5rem;">Letters</h2>
-            <p style="color: var(--muted); font-style: italic; margin-bottom: 1.5rem;">things we wanted to say out loud, written down instead</p>
-            
+            <p style="color: var(--muted); font-family: 'Playfair Display', serif; font-style: italic; margin-bottom: 0.5rem;">you picked 16.</p>
             <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #ff66a3; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 3.5rem;">Open When...</h3>
             
             <div class="envelope-grid fade-in">
-              
-              <div class="envelope-wrapper" onclick="openEnvelope(this, 'You\'re stressed', 'Take a deep breath.\n\nYou are incredibly capable and you are going to figure this out, just like you always do.')">
-                <div class="envelope">
-                  <div class="letter-peek"></div>
-                  <div class="env-flap"></div>
-                  <div class="env-title">You're stressed</div>
-                  <div class="env-seal">❤</div>
-                </div>
-              </div>
+                <script>
+                    const envelopeData = [
+                        { title: "You feel like you're 'too much'", body: "You have friends all over the globe and yet you must know the world is simply too small for your mind. It could never do it justice. Your vast capabilities are no match for the rest of us. You aren't too much, the world is too little." },
+                        { title: "You've had a major win", body: "FUCK YEAH BABY I KNEW YOU COULD DO IT YOU'RE SO FUCKING SMART AND SEXY AND PRETTY AND INTELLIGENT AND CAPABLE!!!!!!!!!!!! NUMBER ONE FAN OVER HERE WOOOOOOOOO LETS FUCKING GOOOOOOOOOOOOO" },
+                        { title: "Pressure to be perfect", body: "Take a breath my love, nobody's expecting anything more than what you are right now. You've already achieved so much, look at how far you've come pretty girl. Give yourself some credit. You're always going to be moving the goalpost, take a second. The beautiful girl reading this is so perfect in every fucking way, there is nothing to change, only room to grow." },
+                        { title: "The 'what ifs' at night", body: "Be here with me, no what ifs, just right now. Where's your hand sanitizer baby, just come back to the present. You know better than to let yourself trail off into a world that doesn't exist. I'd be surprised if you opened this one actually, you're too smart with your feelings to let that happen." },
+                        { title: "Bored and want an adventure", body: "Do a colour hunt :p we already did green, maybe blue or pink? (ok gender reveal)" },
+                        { title: "The world is moving too fast", body: "Did you have your coffee this morning baby? Probably took you 40 minutes to finish, I'm sure you sat and enjoyed it. Go back to that moment, sipping your coffee, the strong smell, let yourself be transported right back to it, grounded like the coffee beans (see what I did there)" },
+                        { title: "You're feeling unappreciated", body: "Karime, you have done so much, you're so good at everything you do and have made it so far, worked so hard to achieve so much. Nothing you do goes unnoticed, at least not by me. I see you pretty baby, such an intelligent capable girl. The way you always make sure everyone's taken care of, the way you look out for your friends and family. Your kindness transcends boarders baby" },
+                        { title: "You're angry at me", body: "Ok first of all I'm so sorry and likely in the wrong pls pls pls forgive me I promise I'll never do it again. Secondly, you're my favourite teammate and first choice. If things aren't okay with us then chances are I done goofed (fucked up) because you're never wrong. Let's talk about it baby, we're so good at communicating, you're my favourite person to talk to." },
+                        { title: "Big decision to make", body: "You have such a strong intuition, you know the moment you start second guessing yourself that something's up – just like the belly piercing! Honestly I trust your gut more than I trust myself. You know what's best baby, all things considered there's no doubt in my mind you'll make the right decision." },
+                        { title: "Lonely in a room full of people", body: "No matter the distance my love I'm always here. You don't even need me, you got a friend in yourself. But in the weird odd and unrealistic case that you can't feel me with you, just know I'm right here. No matter the circumstances, I will always be here for you Karime, always. You have so much light, so much life and love to give. It radiates from you." },
+                        { title: "A really, really shitty day", body: "“At the end of the day, the day ends.” Khalas my love, the day is done. No matter how difficult it was, you did so good. You made it through and you're here baby. Everything that happened has nothing on you, don't let it affect you, don't let it change your pretty self. You're so fucking resilient Karime I honestly don't know anyone else whose been through so much and came out so perfect. Giving you sososo many hugs and kisses. MWAH." },
+                        { title: "Insecure about your progress", body: "I haven't known you for very long, only 8 months, that's enough time for me to have seen growth from you though. Since I've met you, you've had so many sleepless nights, many useless group partners, hot and problematic teachers, housing struggles, and so much more. Are you kidding be so ffr." },
+                        { title: "You need to laugh", body: "Okay well Roberto fuiste al gimnasio so what now. Just image you told me something and I completely misheard it and assumed you said something outta pocket bcs that's very much realistic. In fact if you need to laugh why didn't you call me immediately bcs I could get you giggling with one look baby. AWWWWSOCUTE" },
+                        { title: "Thinking about the future", body: "Okay Scary. But nobody knows what's going to happen in the future, just have so much faith in yourself. Such a smart forensic psychologist with her PhD working in the prison system interviewing criminals and learning everything about their minds so fun so interesting so fucking cool tbh. Also anything you need yk I got you so there's that." },
+                        { title: "You're feeling 'stuck'", body: "Karime there are so many options for you, there's always gonna be a way out of any situation, you just gotta put your detective cap on and start looking 🔍. I know it could be difficult to see the light at the end of the tunnel sometimes, just power through it my love you fucking got this. Look at all you've overcome are you kidding. You have the power to change pages, chapters, books, libraries, whenever you want." },
+                        { title: "Remember how it all started", body: "It just took one reel, one comment, and one goofy like for us to meet. Everything had to line up for us baby, the universe did its big one on us. Everything that's happened so far had to have gone exactly like that for us to be at this point, for us to have gone through everything together and be so close and connected now. I wouldn't change a thing pretty girl. I am so privileged to know you." }
+                    ];
 
-              <div class="envelope-wrapper" onclick="openEnvelope(this, 'You\'re hungry', 'Go get a snack right now.\n\nEverything seems worse on an empty stomach. Treat yourself to something good.')">
-                <div class="envelope">
-                  <div class="letter-peek"></div>
-                  <div class="env-flap"></div>
-                  <div class="env-title">You're hungry</div>
-                  <div class="env-seal">❤</div>
-                </div>
-              </div>
-
-              <div class="envelope-wrapper" onclick="openEnvelope(this, 'You need a laugh', 'Insert a really good inside joke here.\n\nSomething specific that never fails to make her smile.')">
-                <div class="envelope">
-                  <div class="letter-peek"></div>
-                  <div class="env-flap"></div>
-                  <div class="env-title">You need a laugh</div>
-                  <div class="env-seal">❤</div>
-                </div>
-              </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div id="letter-modal">
+                    envelopeData.forEach(item => {
+                        // Escaping single quotes for the onclick function
+                        const safeTitle = item.title.replace(/'/g, "\\'");
+                        const safeBody = item.body.replace(/'/g, "\\'");
+                        
+                        document.write(`
+                            <div class="envelope-wrapper" onclick="openEnvelope(this, '${safeTitle}', '${safeBody}')">
+                                <div class="envelope">
+                                    <div class="letter-peek"></div>
+                                    <div class="env-flap"></div>
+                                    <div class="env-title" style="font-family: 'Playfair Display', serif; font-style: italic;">${item.title}</div>
+                                    <div class="env-seal">❤</div>
+                                </div>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div> </div> </div> <div id="letter-modal">
         <div class="letter-content">
             <span class="close-letter" onclick="closeLetter()">×</span>
             <h2 id="modal-title"></h2>
