@@ -15,7 +15,7 @@ document.addEventListener('mouseup', () => { if(cur) cur.style.transform='transl
 let pgOn = false;
 
 // 1. Add any words you want censored to this list (it will automatically catch uppercase/lowercase)
-const curses = ['bitch', 'slut', 'fuck', 'cunt', 'bullshit', 'damn', 'cum'];
+const curses = ['bitch', 'slut', 'fuck', 'cunt', 'bullshit', 'damn', 'cum', 'fucking'];
 const curseRegex = new RegExp(`\\b(${curses.join('|')})\\b`, 'gi');
 
 // 2. Automatically find these words in the text and wrap them so we can target them
