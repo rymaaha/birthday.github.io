@@ -1,5 +1,13 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* =========================
+   RESET
+========================= */
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
 
+/* =========================
+   ROOT VARIABLES
+========================= */
 :root {
   --ink: #0a0a0a;
   --cream: #fcfaf7; 
@@ -20,16 +28,33 @@
   --dp-rose: #c07060;
 }
 
+/* =========================
+   BASE
+========================= */
 html { scroll-behavior: smooth; }
-body { background: var(--cream); color: var(--ink); font-family: 'EB Garamond', serif; overflow-x: hidden; cursor: none; font-size: 18px; }
 
-/* ── CUSTOM CURSOR ── */
-#cursor{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}
-#cursor-ring{position:fixed;width:28px;height:28px;border:1px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4}
-.dark-cursor #cursor{background:var(--dp-text)}
-.dark-cursor #cursor-ring{border-color:var(--dp-gold)}
+body { 
+  margin: 0; 
+  padding: 0;
+  background: var(--cream); 
+  color: var(--ink); 
+  font-family: 'EB Garamond', serif; 
+  overflow-x: hidden; 
+  cursor: none; 
+  font-size: 18px; 
+}
 
-/* ── PG MODE TOGGLE ── */
+/* =========================
+   CUSTOM CURSOR
+========================= */
+#cursor { position: fixed; width: 8px; height: 8px; background: var(--ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform .1s; }
+#cursor-ring { position: fixed; width: 28px; height: 28px; border: 1px solid var(--ink); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); opacity: .4; }
+.dark-cursor #cursor { background: var(--dp-text); }
+.dark-cursor #cursor-ring { border-color: var(--dp-gold); }
+
+/* =========================
+   PG MODE TOGGLE
+========================= */
 #pg-toggle { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 5000; display: flex; align-items: center; gap: .6rem; background: var(--cream); border: 1px solid rgba(10,10,10,.2); padding: .55rem 1rem; cursor: pointer; font-family: 'Space Mono', monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; transition: background .2s, border-color .2s; user-select: none; }
 #pg-toggle:hover { border-color: var(--rose); }
 .pg-indicator { width: 28px; height: 14px; border-radius: 7px; background: #d4caba; position: relative; transition: background .25s; flex-shrink: 0; }
@@ -42,18 +67,12 @@ body.pg-mode .pg-indicator::after { transform: translateX(14px); }
 .dark-page body.pg-mode .pg-indicator { background: var(--dp-gold); }
 
 /* PG mode — censor words */
-.pg-word {
-  transition: all 0.2s;
-}
+.pg-word { transition: all 0.2s; }
+body.pg-mode .pg-word { color: inherit; background: transparent; filter: none; user-select: none; }
 
-body.pg-mode .pg-word {
-  /* We remove the blur and transparent text so the smiley face is fully visible */
-  color: inherit;
-  background: transparent;
-  filter: none;
-  user-select: none;
-}
-/* ── NAV ── */
+/* =========================
+   NAV
+========================= */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; background: rgba(252, 250, 247, .96); border-bottom: 1px solid rgba(10, 10, 10, .1); backdrop-filter: blur(10px); }
 nav.dark-nav { background: rgba(15, 12, 10, .97); border-bottom-color: rgba(200, 169, 106, .12); }
 nav.dark-nav .nav-logo { color: var(--dp-text); }
@@ -65,7 +84,9 @@ nav.dark-nav .nav-links a:hover, nav.dark-nav .nav-links a.active { color: var(-
 .nav-links a:hover, .nav-links a.active { border-bottom-color: var(--rose); color: var(--rose); }
 body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: grayscale(1); }
 
-/* ── TERMS MODAL ── */
+/* =========================
+   TERMS MODAL
+========================= */
 #terms-overlay { position: fixed; inset: 0; background: rgba(10, 10, 10, .93); z-index: 8000; display: flex; align-items: center; justify-content: center; padding: 2rem; transition: opacity .5s; }
 #terms-box { background: var(--cream); max-width: 600px; width: 100%; padding: 3rem; border: 1px solid var(--ink); font-family: 'EB Garamond', serif; max-height: 82vh; overflow-y: auto; text-align: left; }
 #terms-box h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: .4rem; letter-spacing: .02em; }
@@ -75,23 +96,21 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
 #terms-accept { display: block; width: 100%; padding: .85rem; background: var(--ink); color: var(--cream); border: none; font-family: 'Space Mono', monospace; font-size: .78rem; letter-spacing: .12em; cursor: pointer; margin-top: 1.5rem; transition: background .2s; }
 #terms-accept:hover { background: var(--rose); }
 
-/* ── SHARED LAYOUTS & UTILS ── */
+/* =========================
+   SHARED LAYOUTS & UTILS
+========================= */
 .page { min-height: 100vh; padding-top: 68px; }
 .dark-page { background: var(--dp-bg); color: var(--dp-text); }
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 .section-rule { height: 1px; background: rgba(10, 10, 10, .1); margin: 0 3rem; }
 
-/* ── HOME PAGE ACTS ── */
+/* =========================
+   HOME PAGE ACTS
+========================= */
 #hero { position: relative; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a100c 0%, #231610 50%, #160e0b 100%); }
 .k-overlay { position: absolute; inset: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; overflow: hidden; pointer-events: none; }
-.k-letter {
-  font-family: 'Playfair Display', serif;
-  color: rgba(200, 169, 106, 0.6); /* Increased visibility from 0.15 to 0.6 */
-  line-height: 1;
-  animation: kdrift 9s ease-in-out infinite;
-  user-select: none;
-}
+.k-letter { font-family: 'Playfair Display', serif; color: rgba(200, 169, 106, 0.6); line-height: 1; animation: kdrift 9s ease-in-out infinite; user-select: none; }
 @keyframes kdrift { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-18px) rotate(2.5deg); } }
 .hero-content { position: relative; z-index: 10; text-align: center; color: var(--cream); }
 .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 10vw, 9rem); font-weight: 400; line-height: .92; margin-bottom: 1.5rem; }
@@ -112,184 +131,204 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
 .act-text-col p { font-size: 1.15rem; line-height: 1.9; color: var(--muted); margin-bottom: 1rem; }
 .act-quote { font-style: italic; font-size: 1.35rem; line-height: 1.6; color: var(--rose); border-left: 2px solid var(--rose); padding-left: 1.4rem; margin: 1.8rem 0; }
 
+/* =========================
+   SECRET GATE
+========================= */
+.secret-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-/* =========================================
-   SECRET VAULT & INVISIBLE INK STYLES
-   ========================================= */
-
-/* ── 1. SECRET GATE (PASSWORD PAGE) ── */
-.secret-gate { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
-  min-height: calc(100vh - 68px); 
-  padding: 3rem; 
-  text-align: center; 
-}
-
-.secret-gate h2 { 
-  font-family: 'Playfair Display', serif; 
-  font-size: 2.5rem; 
-  font-weight: 400; 
-  color: var(--dp-gold); 
-  margin-bottom: .5rem; 
-}
-
-#secret-input { 
-  background: rgba(255, 255, 255, .04); 
-  border: 1px solid rgba(200, 169, 106, .25); 
-  border-right: none; 
-  color: var(--dp-text); 
-  padding: .85rem 1.4rem; 
-  font-family: 'Space Mono', monospace; 
-  font-size: .9rem; 
-  outline: none; 
-  width: 240px; 
-}
-
-#secret-btn { 
-  background: var(--dp-gold); 
-  color: var(--dp-bg); 
-  padding: .85rem 1.3rem; 
-  border: 1px solid var(--dp-gold); 
-  font-family: 'Space Mono', monospace; 
-  font-size: .68rem; 
-  letter-spacing: .12em; 
-  cursor: pointer; 
-  transition: background .2s; 
-}
-
-#secret-btn:hover { 
-  background: var(--dp-rose); 
-  border-color: var(--dp-rose); 
-}
-
-
-/* ── 2. THE SPICY HEADING LAYOUT ── */
-.sparkle-container {
+  min-height: calc(100vh - 68px);
   text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 3.5rem;
 }
 
+#secret-input {
+  padding: .85rem 1.4rem;
+  border: 1px solid rgba(200,169,106,.25);
+  background: rgba(255,255,255,.04);
+  color: var(--dp-text);
+  font-family: 'Space Mono', monospace;
+}
+
+#secret-btn {
+  padding: .85rem 1.3rem;
+  border: 1px solid var(--dp-gold);
+  background: var(--dp-gold);
+  cursor: pointer;
+}
+
+/* =========================
+   APPLE INVISIBLE INK: CANVAS MASK 
+========================= */
+.sparkle-container {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 3.5rem;
+  margin-top: 2rem;
+  text-align: center;
+}
 .spicy-heading {
-  display: inline-block; /* Crucial: Keeps the sparkle mask tightly wrapped around the text */
+  display: inline-block;
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: 1.25rem; /* Smaller and more subtle */
+  font-size: 1.25rem;
   letter-spacing: 1px;
   line-height: 2;
 }
-
-
-/* ── 3. APPLE INVISIBLE INK: ETHEREAL LIGHT MASK ── */
-.apple-reveal {
+.scratch-reveal-box {
   position: relative;
-  color: transparent; /* Hides the text initially */
-  cursor: crosshair;
-  user-select: none;
-  transition: color 0.5s ease;
-  
-  /* Adds a little breathing room so the mask covers the text beautifully */
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin: -10px -15px; 
+  display: inline-block; 
+  padding: 10px 15px; 
+  margin: -10px -15px;
 }
-
-/* The pretty, white, sparkling mask */
-.apple-reveal::after {
-  content: '';
+.frost-canvas, .particle-canvas {
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  
-  /* Soft white frosted glass */
-  background-color: rgba(255, 255, 255, 0.1); 
-  backdrop-filter: blur(8px); 
-  -webkit-backdrop-filter: blur(8px);
-  
-  /* Layers of pure white light sparkles */
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.9) 1px, transparent 1.5px),
-    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.8) 1.5px, transparent 2px),
-    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.7) 1px, transparent 1.5px),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 1) 2px, transparent 2.5px);
-  background-size: 25px 25px;
-  
-  /* Shimmering animation */
-  animation: ethereal-sparkle 2s infinite alternate ease-in-out; 
-  pointer-events: none;
-  transition: opacity 0.5s ease;
+  top: 0;
+  left: 0;
+  pointer-events: auto;
+  touch-action: none;
+  border-radius: 8px; 
 }
 
-/* The reveal state */
-.apple-reveal.revealed {
-  color: var(--dp-text); 
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Adds a soft white glow to the words */
-}
-
-.apple-reveal.revealed::after {
-  opacity: 0; /* Fades out the light mask cleanly */
-}
-
-/* Gently moves the light dots around to create a shimmer */
-@keyframes ethereal-sparkle {
-  0% { 
-    background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px; 
-    opacity: 0.7; 
-  }
-  100% { 
-    background-position: 3px 3px, -3px -2px, 2px -3px, -2px 3px; 
-    opacity: 1; 
-    filter: brightness(1.3); 
-  }
-}
-
-
-/* ── 4. THE SPICY TEXT BOX ── */
+/* =========================
+   THE SPICY TEXT BOX 
+========================= */
 .spicy-text-box {
-  background-color: rgba(20, 20, 20, 0.4); /* A dark, slightly transparent background */
-  border: 1px solid rgba(200, 169, 106, 0.2); /* A very faint gold/rose border */
-  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  background: rgba(101, 3, 3, 0.55);
+  border: 1px solid rgba(255, 0, 0, 0.18);
+  border-radius: 16px;
   padding: 3rem;
-  max-width: 700px;
-  margin: 0 auto; /* Centers the box on the page */
-  text-align: left;
-  
-  /* A soft glass-like blur behind the text box */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 45px rgba(240, 212, 212, 0.1);
+  overflow: hidden;
 }
-
 .spicy-text-box p {
+  position: relative;
+  z-index: 2;
   font-size: 1.15rem;
   line-height: 2;
-  color: var(--dp-muted, #ccc); /* Uses your native site text color, falls back to #ccc */
-  margin-bottom: 1.5rem;
+  text-align: center;
+  max-width: 85ch; /* WIDER TEXT BOX FIX */
+  margin: 0 auto 1.5rem auto; 
+  color: rgba(255, 245, 247, 0.92);
+  text-shadow: 0 1px 10px rgba(224, 122, 122, 0.15);
+}
+.spicy-text-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: translateX(-100%);
+  transition: transform 1.2s ease;
+}
+.spicy-text-box:hover::after {
+  transform: translateX(100%);
 }
 
-.spicy-text-box p:last-child {
-  margin-bottom: 0;
+/* =========================
+   TITLE REVEAL EFFECTS 
+========================= */
+.apple-ink {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background-image: linear-gradient(90deg, #ff6b9a, #ffffff, #ffb3c7, #ffffff, #ff6b9a);
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmerText 3s linear infinite;
+  cursor: pointer;
 }
+@keyframes shimmerText { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+.apple-ink::after { content: "✦ ✧ ✦"; position: absolute; top: -1.2rem; right: -1rem; font-size: 0.6rem; color: rgba(255,105,140,0.7); animation: floatSparkles 2.5s ease-in-out infinite; pointer-events: none; }
+@keyframes floatSparkles { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(-4px); opacity: 1; } }
 
+/* =========================
+   GIFT BOX
+========================= */
+.gift-reveal { position: relative; max-width: 1000px; margin: 0 auto; }
+.gift-lid {
+  position: absolute; inset: 0; z-index: 5; overflow: hidden;
+  background: linear-gradient(135deg, #ffe4ec, #ffd1dc, #ffc2d6);
+  border: 1px solid rgba(255, 105, 140, 0.25); border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(255, 105, 140, 0.15), inset 0 1px 0 rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: transform .9s cubic-bezier(.22,1,.36,1), opacity .6s ease;
+}
+.gift-lid > * { position: relative; z-index: 3; }
+.gift-lid:hover { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(255,105,140,0.25), inset 0 1px 0 rgba(255,255,255,0.7); }
+.gift-lid.opened { transform: translateY(-250px) rotate(-18deg) scale(.85); opacity: 0; pointer-events: none; }
+.gift-lid::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 42px;
+  background: linear-gradient(180deg, #ff1a6a, #ff66ad, #cc005f);
+  opacity: 0.95; box-shadow: 0 0 14px rgba(255, 0, 0, 0.35); z-index: 2; pointer-events: none;
+}
+.gift-lid::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); height: 42px;
+  background: linear-gradient(90deg, #ff1a6a, #ff66ad, #cc005f);
+  opacity: 0.95; box-shadow: 0 0 14px rgba(255, 0, 0, 0.35); z-index: 2; pointer-events: none;
+}
+.gift-bow { font-size: 2rem; color: #ff00dd; text-shadow: 0 0 12px rgba(110, 106, 108, 0.4); }
+.gift-lid span { position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; font-size: 1.3rem !important; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #ffffff; text-shadow: 0 2px 12px rgba(0,0,0,0.35); z-index: 10 !important; pointer-events: none; }
 
+/* =========================
+   PARTICLES & ANIMATIONS
+========================= */
+.particle { position: fixed; width: 6px; height: 6px; background: var(--dp-gold); border-radius: 50%; z-index: 9999; pointer-events: none; animation: floatOut .9s ease-out forwards; }
+@keyframes floatOut { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; } }
+@keyframes shake { 0%,100% { transform: translate(0,0); } 25% { transform: translate(2px,-2px); } 50% { transform: translate(-2px,2px); } 75% { transform: translate(2px,2px); } }
+.shake { animation: shake .3s ease; }
 
 /* ══════════════════════════════════
    MESSAGES / FLAT GRAPHIC ENVELOPES
 ══════════════════════════════════ */
 #page-messages { background: #fff5f7; position: relative; overflow: hidden; }
-
-/* Pink background blobs to keep the beautiful gradient backdrop */
 .glass-blob { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; opacity: 0.7; }
 .blob-1 { top: 10%; left: 15%; width: 350px; height: 350px; background: rgba(255, 154, 162, 0.4); }
 .blob-2 { bottom: 10%; right: 10%; width: 450px; height: 450px; background: rgba(255, 183, 178, 0.45); }
 
-/* GRID FIX: Forces exactly 3 columns */
-.envelope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: center; max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+.envelope-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+@media (max-width: 900px) { .envelope-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* The Base Envelope Structure */
+/* ── BIG FINALE LETTER ── */
+
+.big-envelope-container .env-seal {
+  top: 47%;
+  left: 48%;
+}
+.big-envelope-container {
+  margin-top: 5rem;
+  width: 100%;
+  max-width: 1000px; /* Matches the grid's max-width perfectly */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem; /* Matches the grid's padding perfectly */
+}
+
+.big-envelope-container .envelope-wrapper {
+  width: 100%; /* Forces the envelope to stretch exactly across all 4 columns */
+}
+
+.big-envelope-container .envelope {
+  height: 280px; /* Makes the envelope taller to balance out how wide it is */
+}
+
+.big-envelope-container .letter-peek {
+  height: 220px; /* Makes the sliding paper inside taller too */
+}
+
+@media (max-width: 900px) {
+  .big-envelope-container .envelope {
+    height: 200px; /* Safely shrinks the height back down for phone screens */
+  }
+}
+
+
 .envelope-wrapper { perspective: 1000px; cursor: pointer; }
 .envelope { 
     position: relative; width: 100%; height: 210px; 
@@ -297,76 +336,49 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
     box-shadow: 0 15px 35px rgba(255, 107, 129, 0.15); 
     transition: transform 0.3s ease; 
     border-radius: 2px;
-    overflow: hidden; /* FIX: Hides the letter entirely until it slides out */
+    overflow: hidden;
 }
 .envelope-wrapper:hover .envelope { transform: translateY(-5px); }
 
-/* The Physical Letter inside */
 .letter-peek { 
     position: absolute; top: 100%; left: 15px; right: 15px; height: 140px; 
     background: #fff; z-index: 1; 
     transition: top 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     border: 1px solid rgba(255,182,193,0.3); border-radius: 2px; 
 }
-.envelope.open .letter-peek { top: 15px; } /* Slides up beautifully */
+.envelope.open .letter-peek { top: 15px; } 
 
-/* The Bottom Pocket - SVG REMOVED SO THERE IS NO "X" */
 .env-pocket { 
     position: absolute; inset: 0; z-index: 3; 
     background-color: #fdf2f6; 
-    /* Cuts out the top triangle so the flap can fold into it */
     clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
 }
 
-/* The Top Triangle Flap */
 .env-flap { 
     position: absolute; top: 0; left: 0; right: 0; height: 50%; 
     background-color: #fdf2f6; 
     clip-path: polygon(0 0, 100% 0, 50% 100%); 
     transform-origin: top; z-index: 5; 
     transition: transform 0.5s ease; 
-    /* Draws a slightly darker pink line just on the edge of the triangle flap */
     background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L50,100 L100,0' stroke='%23e6c8d3' stroke-width='3' fill='none' /%3E%3C/svg%3E");
     background-size: 100% 100%;
 }
 .envelope.open .env-flap { transform: rotateX(180deg); }
 
-/* The Bold Sans-Serif Text */
 .env-title {
-    position: absolute;
-    width: 100%;
-    /* Pushed down to the bottom half so the heart is clear */
-    top: 75%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* Updated to Playfair Display to match the subheading */
-    font-family: 'Playfair Display', serif;
-    font-weight: 400; 
-    font-style: italic;
-    /* Keeps the smaller text size */
-    font-size: 1.2rem; 
-    color: var(--charcoal);
-    text-align: center;
-    z-index: 4;
-    pointer-events: none;
+    position: absolute; width: 100%; top: 75%; left: 50%; transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+    font-size: 1.2rem; color: var(--charcoal); text-align: center; z-index: 4; pointer-events: none;
 }
 .envelope.open .env-title { opacity: 0; transition: opacity 0.2s; }
 
-/* The Square Pink Seal */
 .env-seal { 
-    position: absolute; top: 50%; left: 50%; 
-    transform: translate(-50%, -50%); 
-    background: #ff66a3; 
-    width: 36px; height: 36px; 
-    display: flex; align-items: center; justify-content: center; 
-    color: white; font-size: 1rem; 
-    z-index: 7; 
-    transition: transform 0.4s ease, opacity 0.3s ease; 
-    border-radius: 2px;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+    background: #ff66a3; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; 
+    color: white; font-size: 1rem; z-index: 7; transition: transform 0.4s ease, opacity 0.3s ease; border-radius: 2px;
 }
 .envelope.open .env-seal { transform: translate(-50%, -50%) scale(0); opacity: 0; }
 
-/* The Centered Modal (Reading the opened letter) */
 #letter-modal { position: fixed; inset: 0; background: rgba(10,10,10,0.85); z-index: 9000; display: none; align-items: center; justify-content: center; padding: 2rem; opacity: 0; transition: opacity 0.4s ease; }
 #letter-modal.visible { display: flex; opacity: 1; }
 .letter-content { background: var(--cream); padding: 4rem 3.5rem; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; text-align: left; position: relative; transform: translateY(40px); transition: transform 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 1px solid rgba(10,10,10,0.05); border-radius: 4px; }
@@ -374,198 +386,48 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
 .close-letter { position: absolute; top: 1.5rem; right: 2rem; font-size: 2.2rem; cursor: pointer; font-family: 'Space Mono', monospace; color: var(--muted); transition: color 0.2s; line-height: 1; }
 .close-letter:hover { color: #ff6b81; }
 
-/* Centering the text inside the open letter modal */
 #modal-title { font-family: 'Poppins', sans-serif; font-size: 2rem; color: #ff66a3; margin-bottom: 1.5rem; font-weight: 600; text-align: center; }
 #modal-body { font-size: 1.15rem; line-height: 1.95; color: var(--charcoal); white-space: pre-wrap; font-family: 'EB Garamond', serif; width: 100%; text-align: center; }
+
+
+
 /* ══════════════════════════════════
-   MEMORY REELS (4-Col Grid + Instagram Style)
+   MEMORY REELS
 ══════════════════════════════════ */
-#page-memory {
-  background: var(--cream);
-  padding-top: 100px;
-}
-.memory-header {
-  padding: 2rem 3rem;
-  text-align: center;
-}
-.memory-header h2 {
-  font-family: 'Bodoni Moda', serif;
-  font-size: 3.5rem;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.5rem;
-}
-.memory-header p {
-  font-style: italic;
-  color: var(--muted);
-  font-size: 1.1rem;
-}
+#page-memory { background: var(--cream); padding-top: 100px; }
+.memory-header { padding: 2rem 3rem; text-align: center; }
+.memory-header h2 { font-family: 'Bodoni Moda', serif; font-size: 3.5rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+.memory-header p { font-style: italic; color: var(--muted); font-size: 1.1rem; }
 
-/* 4-Column Layout */
-.memory-grid {
-  padding: 2rem 3rem 6rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.memory-card {
-  background: var(--film);
-  aspect-ratio: 9/16;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.memory-card:hover {
-  transform: scale(1.02);
-  z-index: 10;
-  box-shadow: 0 10px 30px rgba(10,10,10,0.2);
-}
-.memory-card video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.85;
-  transition: opacity 0.3s;
-}
-.memory-card:hover video {
-  opacity: 1;
-}
-.memory-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  background: linear-gradient(to top, rgba(10,10,10,0.8), transparent);
-  color: var(--cream);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transform: translateY(100%);
-  transition: transform 0.3s;
-}
-.memory-card:hover .memory-caption {
-  transform: translateY(0);
-}
+.memory-grid { padding: 2rem 3rem 6rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1400px; margin: 0 auto; }
+.memory-card { background: var(--film); aspect-ratio: 9/16; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.3s ease; }
+.memory-card:hover { transform: scale(1.02); z-index: 10; box-shadow: 0 10px 30px rgba(10,10,10,0.2); }
+.memory-card video { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity 0.3s; }
+.memory-card:hover video { opacity: 1; }
+.memory-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(10,10,10,0.8), transparent); color: var(--cream); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; transform: translateY(100%); transition: transform 0.3s; }
+.memory-card:hover .memory-caption { transform: translateY(0); }
 
-/* Full-Screen Reels Modal (Instagram Desktop Style) */
-#reels-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.7); 
-  backdrop-filter: blur(10px); 
-  z-index: 9000;
-  display: none; 
-  justify-content: center; 
-  align-items: center; 
-}
-#reels-modal.open {
-  display: flex;
-}
-#reels-container {
-  height: 85vh; 
-  width: calc(85vh * (9 / 16)); 
-  max-width: 95vw; 
-  background: #000;
-  border-radius: 12px; 
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory; 
-  scroll-behavior: smooth;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  position: relative; 
-}
-#reels-container::-webkit-scrollbar {
-  display: none; 
-}
-.reel-item {
-  width: 100%;
-  height: 100%;
-  min-height: 100%; 
-  scroll-snap-align: start;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-.reel-item video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+#reels-modal { position: fixed; inset: 0; background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(10px); z-index: 9000; display: none; justify-content: center; align-items: center; }
+#reels-modal.open { display: flex; }
+#reels-container { height: 85vh; width: calc(85vh * (9 / 16)); max-width: 95vw; background: #000; border-radius: 12px; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; box-shadow: 0 20px 60px rgba(0,0,0,0.6); position: relative; }
+#reels-container::-webkit-scrollbar { display: none; }
+.reel-item { width: 100%; height: 100%; min-height: 100%; scroll-snap-align: start; display: flex; justify-content: center; align-items: center; position: relative; }
+.reel-item video { width: 100%; height: 100%; object-fit: cover; }
 
-/* Modal Controls */
-#reels-close {
-  position: fixed;
-  top: 2rem;
-  right: 3rem;
-  color: var(--cream);
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 9001;
-  font-family: sans-serif;
-  transition: color 0.2s, transform 0.2s;
-}
-#reels-close:hover {
-  color: var(--rose);
-  transform: scale(1.1);
-}
-#reels-next {
-  position: fixed;
-  bottom: 2.5rem;
-  right: 3rem;
-  color: var(--cream);
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 9001;
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(245,240,232,0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-}
-#reels-next:hover {
-  background: var(--cream);
-  color: var(--ink);
-  transform: translateY(3px);
-}
-
-/* Mobile Responsive */
-@media(max-width: 900px) {
-  .memory-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; padding: 1rem; }
-  #reels-container { height: 90vh; width: 90vw; aspect-ratio: auto; }
-  #reels-next { right: 1.5rem; bottom: 1.5rem; width: 40px; height: 40px; font-size: 1.2rem; }
-  #reels-close { top: 1.5rem; right: 1.5rem; font-size: 1.5rem; }
-}
+#reels-close { position: fixed; top: 2rem; right: 3rem; color: var(--cream); font-size: 2rem; cursor: pointer; z-index: 9001; font-family: sans-serif; transition: color 0.2s, transform 0.2s; }
+#reels-close:hover { color: var(--rose); transform: scale(1.1); }
+#reels-next { position: fixed; bottom: 2.5rem; right: 3rem; color: var(--cream); font-size: 1.5rem; cursor: pointer; z-index: 9001; width: 50px; height: 50px; border: 1px solid rgba(245,240,232,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: all 0.3s ease; }
+#reels-next:hover { background: var(--cream); color: var(--ink); transform: translateY(3px); }
 
 /* ══════════════════════════════════
    CUTE MARGIN STICKERS (DUDU BUBU)
 ══════════════════════════════════ */
-.sticker {
-  position: absolute;
-  width: 140px; /* Adjust this to make them bigger/smaller */
-  z-index: 10; 
-  pointer-events: none; /* Stops them from blocking clicks/scrolls */
-  opacity: 0.95;
-}
-.sticker img {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.15)); /* Cute sticker shadow */
-}
+.sticker { position: absolute; width: 140px; z-index: 10; pointer-events: none; opacity: 0.95; }
+.sticker img { width: 100%; height: auto; filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.15)); }
 
-/* Positioning them on the sides */
 .sticker.left { left: 4%; }
 .sticker.right { right: 4%; }
 
-/* Scattering them vertically down the page with cute random tilts */
 .s1 { top: 15%; transform: rotate(-8deg); }
 .s2 { top: 23%; transform: rotate(12deg); }
 .s3 { top: 35%; transform: rotate(-5deg); }
@@ -578,8 +440,4 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
 .s10 { top: 95%; transform: rotate(8deg); }
 .s11 { top: 98%; left: 10%; transform: rotate(-9deg); }
 
-/* Hide on mobile so they don't cover the text on tiny phone screens */
-@media(max-width: 900px) {
-  .sticker { display: none; }
-}
-
+@media(max-width: 900px) { .sticker { display: none; } }
