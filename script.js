@@ -239,8 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.envelope').forEach(e => e.classList.remove('open'));
   };
 
-
-  // ===============================
+// ===============================
   // MEMORY REELS
   // ===============================
   let currentReelIndex = 0;
@@ -278,6 +277,18 @@ document.addEventListener('DOMContentLoaded', () => {
       behavior: 'smooth'
     });
   };
+  
+  // NEW: Fully functional prevReel 
+  window.prevReel = function () {
+    if (!reelsContainer) return;
+
+    const h = reelsContainer.clientHeight;
+    reelsContainer.scrollTo({
+      // We subtract 1 to scroll UP to the previous video
+      top: h * (currentReelIndex - 1), 
+      behavior: 'smooth'
+    });
+  };
 
   if (reelsContainer) {
     const obs = new IntersectionObserver((entries) => {
@@ -298,7 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
       obs.observe(item);
     });
   }
-
 
   // ===============================
   // K HERO BACKGROUND

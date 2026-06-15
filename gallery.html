@@ -2,13 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>K ✦ Memory</title>
+  <title>Memeory</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Space+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===============================
+       CUTE FLOATING DECORATIONS
+       =============================== */
+    .floating-decor {
+      position: absolute; 
+      z-index: 50; 
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--muted, #555);
+      pointer-events: none; 
+      animation: float 6s ease-in-out infinite;
+    }
+    .floating-decor img {
+      width: 190px; 
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      margin-bottom: 0.5rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Placement */
+    .decor-left { 
+      top: 150px; 
+      left: 3rem; 
+    }
+    .decor-right { 
+      top: 150px; 
+      right: 3rem; 
+    }
+    
+    /* Ensures the video grid stays clickable above the images if they overlap */
+    .memory-grid { position: relative; z-index: 60; }
+  </style>
 </head>
 <body>
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
+
+  <div class="floating-decor decor-left">
+    <img src="angels.jpg" alt="Angels">
+    <div>you're being watched over</div>
+  </div>
+
+  <div class="floating-decor decor-right">
+    <img src="combo.png" alt="Combo">
+    <div>take a snack break!!</div>
+  </div>
 
   <nav id="nav">
     <a href="index.html" class="nav-logo">K ✦</a>
@@ -18,63 +71,115 @@
       <li><a href="music.html">Playlist</a></li>
       <li><a href="map.html">Universities</a></li>
       <li><a href="messages.html">Letters</a></li>
-        <li><a href="secret.html">✦ Secreto de amor</a></li>
-      <li><a href="portrait.html">Portrait</a></li>
+      <li><a href="secret.html">✦ Secreto de amor</a></li>
     </ul>
   </nav>
 
   <div class="page active fade-in" id="page-memory">
     <div class="memory-header">
-      <h2>The Memory</h2>
-      <p>Moments in motion. Click to play, scroll to remember.</p>
+      <h2>The Memeory</h2>
+      <p>Our own personal archive cuz we do be quoting. I missed a lot so this is ust a little bit of this a little bit of thattt...</p>
     </div>
 
     <div class="memory-grid">
-      <div class="memory-card" onclick="openReel(0)">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" muted loop playsinline></video>
-        <div class="memory-caption">that one time</div>
-      </div>
-      <div class="memory-card" onclick="openReel(1)">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" muted loop playsinline></video>
-        <div class="memory-caption">somewhere good</div>
-      </div>
-      <div class="memory-card" onclick="openReel(2)">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" muted loop playsinline></video>
-        <div class="memory-caption">the best sound</div>
-      </div>
-      <div class="memory-card" onclick="openReel(3)">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" muted loop playsinline></video>
-        <div class="memory-caption">when she wasn't looking</div>
-      </div>
-      <div class="memory-card" onclick="openReel(4)">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" muted loop playsinline></video>
-        <div class="memory-caption">the two of you</div>
-      </div>
+      <div class="memory-card" onclick="openReel(0)"><video src="It's Okay, No One has to know baby girl.mp4" muted loop playsinline></video><div class="memory-caption">This you?</div></div>
+      <div class="memory-card" onclick="openReel(1)"><video src="How ab a nice big cup of STFU kid.mp4" muted loop playsinline></video><div class="memory-caption">Classic quote</div></div>
+      <div class="memory-card" onclick="openReel(2)"><video src="PEARL Why Are You Leaving Me.mp4" muted loop playsinline></video><div class="memory-caption">Been quoting it wrong oops</div></div>
+      <div class="memory-card" onclick="openReel(3)"><video src="a white man.mp4" muted loop playsinline></video><div class="memory-caption">TYPICAL.</div></div>
+      <div class="memory-card" onclick="openReel(4)"><video src="ariana what are you doing here.mp4" muted loop playsinline></video><div class="memory-caption">ariana what are you doing here</div></div>
+      <div class="memory-card" onclick="openReel(5)"><video src="AWWWSOCUTE.mp4" muted loop playsinline></video><div class="memory-caption">Can you hear me saying this</div></div>
+      <div class="memory-card" onclick="openReel(6)"><video src="Beans Greens.mp4" muted loop playsinline></video><div class="memory-caption">Fire rap</div></div>
+      <div class="memory-card" onclick="openReel(7)"><video src="Blah, Blah, Blah.mp4" muted loop playsinline></video><div class="memory-caption">Blah, Blah, Blah</div></div>
+      <div class="memory-card" onclick="openReel(8)"><video src="chicken chicken chicken.mp4" muted loop playsinline></video><div class="memory-caption">chicken chicken chicken</div></div>
+      <div class="memory-card" onclick="openReel(9)"><video src="DO YOU WEAR WIGS.mp4" muted loop playsinline></video><div class="memory-caption">DO YOU WEAR WIGS???</div></div>
+      <div class="memory-card" onclick="openReel(10)"><video src="Give me 10.mp4" muted loop playsinline></video><div class="memory-caption">No cuz give me 10.</div></div>
+      <div class="memory-card" onclick="openReel(11)"><video src="give me cookie.mp4" muted loop playsinline></video><div class="memory-caption">give me cookie gave you cookie</div></div>
+      <div class="memory-card" onclick="openReel(12)"><video src="herro.mp4" muted loop playsinline></video><div class="memory-caption">not racist ok.</div></div>
+      <div class="memory-card" onclick="openReel(13)"><video src="I ATE MY GRANDMA.mp4" muted loop playsinline></video><div class="memory-caption">Singing killed my grandma.</div></div>
+      <div class="memory-card" onclick="openReel(14)"><video src="I cant really explain it i havent got the word its a felling.mp4" muted loop playsinline></video><div class="memory-caption">i can't really explain it</div></div>
+      <div class="memory-card" onclick="openReel(15)"><video src="i dont know who this man is.mp4" muted loop playsinline></video><div class="memory-caption">idk who this man is</div></div>
+      <div class="memory-card" onclick="openReel(16)"><video src="I got this! FAHHH!.mp4" muted loop playsinline></video><div class="memory-caption">FAHHHHHHHH</div></div>
+      <div class="memory-card" onclick="openReel(17)"><video src="i ThInK wE AlL SiNg.mp4" muted loop playsinline></video><div class="memory-caption">i ThInK wE AlL SiNg</div></div>
+      <div class="memory-card" onclick="openReel(18)"><video src="i was supposed to be in the video.mp4" muted loop playsinline></video><div class="memory-caption">me when I was supposed to be in the video</div></div>
+      <div class="memory-card" onclick="openReel(19)"><video src="if 2 plus 2 is 4.mp4" muted loop playsinline></video><div class="memory-caption">math does NOT check out</div></div>
+      <div class="memory-card" onclick="openReel(20)"><video src="If My Grandmother Had Wheels She Would've Been a Bike.mp4" muted loop playsinline></video><div class="memory-caption">how easily i get annoyed</div></div>
+      <div class="memory-card" onclick="openReel(21)"><video src="Im bout to eat this chick fil a.mp4" muted loop playsinline></video><div class="memory-caption">you 8x a week in texas</div></div>
+      <div class="memory-card" onclick="openReel(22)"><video src="its okay.mp4" muted loop playsinline></video><div class="memory-caption">it's OKAY!!!!!!!</div></div>
+      <div class="memory-card" onclick="openReel(23)"><video src="Jason Derulo Meme.mp4" muted loop playsinline></video><div class="memory-caption">Jason Derulo.</div></div>
+      <div class="memory-card" onclick="openReel(24)"><video src="Krispy Kreme.mp4" muted loop playsinline></video><div class="memory-caption">Was it Krispy...?</div></div>
+      <div class="memory-card" onclick="openReel(25)"><video src="Nicki Minaj - Broke people should never laugh.mp4" muted loop playsinline></video><div class="memory-caption">So you basically</div></div>
+      <div class="memory-card" onclick="openReel(26)"><video src="No no no no dont do that.mp4" muted loop playsinline></video><div class="memory-caption">dont do that</div></div>
+      <div class="memory-card" onclick="openReel(27)"><video src="oh thats a death threat.mp4" muted loop playsinline></video><div class="memory-caption">yeah matthew it is. from me btw.</div></div>
+      <div class="memory-card" onclick="openReel(28)"><video src="Please you have to believe me.mp4" muted loop playsinline></video><div class="memory-caption">please you HAVE to believe me</div></div>
+      <div class="memory-card" onclick="openReel(29)"><video src="she is very gorgeous to me.mp4" muted loop playsinline></video><div class="memory-caption">your worst fear</div></div>
+      <div class="memory-card" onclick="openReel(30)"><video src="stupid fucking dino.mp4" muted loop playsinline></video><div class="memory-caption">stupid fucking dinosaur</div></div>
+      <div class="memory-card" onclick="openReel(31)"><video src="THANKS A LOT RACHEL!.mp4" muted loop playsinline></video><div class="memory-caption">thanks a LOT rachel.</div></div>
+      <div class="memory-card" onclick="openReel(32)"><video src="THE WICKED WITCH OF THE EAST, BRO!.mp4" muted loop playsinline></video><div class="memory-caption">of the East, bro</div></div>
+      <div class="memory-card" onclick="openReel(33)"><video src="we are charlie kirk.mp4" muted loop playsinline></video><div class="memory-caption">no cuz we are charlie kirk</div></div>
+      <div class="memory-card" onclick="openReel(34)"><video src="Well you should probably eat.mp4" muted loop playsinline></video><div class="memory-caption">probably eat headass</div></div>
+      <div class="memory-card" onclick="openReel(35)"><video src="who are you talking to.mp4" muted loop playsinline></video><div class="memory-caption">who are you talking to......</div></div>
+      <div class="memory-card" onclick="openReel(36)"><video src="work like a dog.mp4" muted loop playsinline></video><div class="memory-caption">you when you try to pull an all nighter all the fucking time</div></div>
+      <div class="memory-card" onclick="openReel(37)"><video src="Wouldn't you like to know weather boy original.mp4" muted loop playsinline></video><div class="memory-caption">you to me when i ask a simple question</div></div>
+      <div class="memory-card" onclick="openReel(38)"><video src="can you hear me.mp4" muted loop playsinline></video><div class="memory-caption">us 16x a day</div></div>
     </div>
+
+    <div style="text-align: center; padding: 2rem 2rem 8rem; max-width: 700px; margin: 0 auto; font-family: 'Space Mono', monospace; color: var(--muted, #555); position: relative; z-index: 60;">
+      <img src="roberto.png" alt="Roberto" style="width: 280px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 1.5rem;">
+      <p style="font-size: 0.95rem; line-height: 1.8; letter-spacing: 0.02em;">roberto fuiste al gimnasio. </p>
+      <p>honestly i just wanna wear your clothes cuz you're like a tortilla and also your new name is home cuz youre where the heart is and the smelliest cat and so yeah.</p>
+    </div>
+
   </div>
 
   <div id="reels-modal">
     <div id="reels-close" onclick="closeReel()">✕</div>
     
     <div id="reels-container">
-      <div class="reel-item">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" loop playsinline controls></video>
-      </div>
-      <div class="reel-item">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" loop playsinline controls></video>
-      </div>
-      <div class="reel-item">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" loop playsinline controls></video>
-      </div>
-      <div class="reel-item">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" loop playsinline controls></video>
-      </div>
-      <div class="reel-item">
-        <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" loop playsinline controls></video>
-      </div>
+      <div class="reel-item"><video src="It's Okay, No One has to know baby girl.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="How ab a nice big cup of STFU kid.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="PEARL Why Are You Leaving Me.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="a white man.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="ariana what are you doing here.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="AWWWSOCUTE.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Beans Greens.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Blah, Blah, Blah.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="chicken chicken chicken.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="DO YOU WEAR WIGS.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Give me 10.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="give me cookie.mp4" dummy loop playsinline controls></video></div>
+      <div class="reel-item"><video src="herro.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="I ATE MY GRANDMA.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="I cant really explain it i havent got the word its a felling.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="i dont know who this man is.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="I got this! FAHHH!.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="i ThInK wE AlL SiNg.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="i was supposed to be in the video.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="if 2 plus 2 is 4.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="If My Grandmother Had Wheels She Would've Been a Bike.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Im bout to eat this chick fil a.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="its okay.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Jason Derulo Meme.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Krispy Kreme.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Nicki Minaj - Broke people should never laugh.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="No no no no dont do that.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="oh thats a death threat.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Please you have to believe me.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="she is very gorgeous to me.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="stupid fucking dino.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="THANKS A LOT RACHEL!.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="THE WICKED WITCH OF THE EAST, BRO!.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="we are charlie kirk.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Well you should probably eat.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="who are you talking to.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="work like a dog.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="Wouldn't you like to know weather boy original.mp4" loop playsinline controls></video></div>
+      <div class="reel-item"><video src="can you hear me.mp4" loop playsinline controls></video></div>
     </div>
 
-    <div id="reels-next" onclick="nextReel()">↓</div>
+    <div class="reels-nav-controls">
+      <div id="reels-prev" onclick="prevReel()">↑</div>
+      <div id="reels-next" onclick="nextReel()">↓</div>
+    </div>
   </div>
 
   <script src="script.js"></script>

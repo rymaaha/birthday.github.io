@@ -139,26 +139,33 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   min-height: calc(100vh - 68px);
   text-align: center;
 }
 
 #secret-input {
   padding: .85rem 1.4rem;
-  border: 1px solid rgba(200,169,106,.25);
-  background: rgba(255,255,255,.04);
+  /* Deep Red Border */
+  border: 1px solid #CF2525; 
+  background: rgba(255, 255, 255, .04);
   color: var(--dp-text);
   font-family: 'Space Mono', monospace;
 }
 
 #secret-btn {
   padding: .85rem 1.3rem;
-  border: 1px solid var(--dp-gold);
-  background: var(--dp-gold);
+  /* Deep Red Background */
+  border: 1px solid #CF2525;
+  background: #CF2525; 
+  color: #ffffff; /* White text for high contrast against the red */
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
+#secret-btn:hover {
+  background: #a61d1d; /* A slightly darker red for the hover effect */
+  border-color: #a61d1d;
+}
 /* =========================
    APPLE INVISIBLE INK: CANVAS MASK 
 ========================= */
@@ -389,8 +396,6 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
 #modal-title { font-family: 'Poppins', sans-serif; font-size: 2rem; color: #ff66a3; margin-bottom: 1.5rem; font-weight: 600; text-align: center; }
 #modal-body { font-size: 1.15rem; line-height: 1.95; color: var(--charcoal); white-space: pre-wrap; font-family: 'EB Garamond', serif; width: 100%; text-align: center; }
 
-
-
 /* ══════════════════════════════════
    MEMORY REELS
 ══════════════════════════════════ */
@@ -407,6 +412,9 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
 .memory-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(10,10,10,0.8), transparent); color: var(--cream); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; transform: translateY(100%); transition: transform 0.3s; }
 .memory-card:hover .memory-caption { transform: translateY(0); }
 
+/* ===============================
+   MODAL & CONTAINER
+   =============================== */
 #reels-modal { position: fixed; inset: 0; background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(10px); z-index: 9000; display: none; justify-content: center; align-items: center; }
 #reels-modal.open { display: flex; }
 #reels-container { height: 85vh; width: calc(85vh * (9 / 16)); max-width: 95vw; background: #000; border-radius: 12px; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; box-shadow: 0 20px 60px rgba(0,0,0,0.6); position: relative; }
@@ -414,10 +422,53 @@ body.pg-mode [href="secret.html"] { opacity: .35; pointer-events: none; filter: 
 .reel-item { width: 100%; height: 100%; min-height: 100%; scroll-snap-align: start; display: flex; justify-content: center; align-items: center; position: relative; }
 .reel-item video { width: 100%; height: 100%; object-fit: cover; }
 
+/* ===============================
+   NAVIGATION CONTROLS
+   =============================== */
+/* Grouped side container */
+.reels-nav-controls {
+  position: fixed; 
+  right: 3rem;           /* Matches the distance of the close button */
+  top: 50%;              /* Centers vertically */
+  transform: translateY(-50%); 
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;           /* Spacing between the arrows */
+  z-index: 9001;         /* Above the modal background */
+}
+
+/* Unified styling for both arrows */
+#reels-prev, #reels-next {
+  color: var(--cream);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(245,240,232,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+/* Distinct hover states for up vs down */
+#reels-prev:hover { 
+  background: var(--cream); 
+  color: var(--ink); 
+  transform: translateY(-3px); /* Subtle bounce UP */
+}
+#reels-next:hover { 
+  background: var(--cream); 
+  color: var(--ink); 
+  transform: translateY(3px); /* Subtle bounce DOWN */
+}
+
+/* Close Button */
 #reels-close { position: fixed; top: 2rem; right: 3rem; color: var(--cream); font-size: 2rem; cursor: pointer; z-index: 9001; font-family: sans-serif; transition: color 0.2s, transform 0.2s; }
 #reels-close:hover { color: var(--rose); transform: scale(1.1); }
-#reels-next { position: fixed; bottom: 2.5rem; right: 3rem; color: var(--cream); font-size: 1.5rem; cursor: pointer; z-index: 9001; width: 50px; height: 50px; border: 1px solid rgba(245,240,232,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: all 0.3s ease; }
-#reels-next:hover { background: var(--cream); color: var(--ink); transform: translateY(3px); }
 
 /* ══════════════════════════════════
    CUTE MARGIN STICKERS (DUDU BUBU)
