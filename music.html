@@ -6,10 +6,30 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="letterk.png">
+    <style>
+        .side-sticker {
+            position: fixed;
+            width: 100px; /* Adjust size as needed */
+            z-index: -1;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
+
+<img src="central.png" class="side-sticker" style="top: 15%; left: 5%;">
+    <img src="share.png"   class="side-sticker" style="top: 30%; left: 3%;">
+    <img src="couch.png"   class="side-sticker" style="top: 45%; left: 5%;">
+    <img src="frame.png"   class="side-sticker" style="top: 55%; left: 3%;">
+    <img src="lobster.png" class="side-sticker" style="top: 75%; left: 5%;">
+    
+    <img src="friends.png" class="side-sticker" style="top: 15%; right: 5%;">
+    <img src="break.png"   class="side-sticker" style="top: 22%; right: 3%;">
+    <img src="turkey.png"  class="side-sticker" style="top: 45%; right: 5%;">
+    <img src="ugly.png"    class="side-sticker" style="top: 60%; right: 3%;">
+    <img src="doin.png"    class="side-sticker" style="top: 75%; right: 5%;">
 
 <nav id="nav">
     <a href="index.html" class="nav-logo">K ✦</a>
@@ -22,9 +42,10 @@
       <li><a href="secret.html">✦ Secreto de amor</a></li>
       </ul>
   </nav>
+
 <div class="page active fade-in" id="page-playlist" style="text-align: center; padding: 5rem 2rem 2rem;">
           <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem;">The Playlist</h2>
-        <p style="color: var(--muted); font-style: italic; margin-bottom: 2rem;">All your songs</p>
+        <p style="color: var(--muted); font-style: italic; margin-bottom: 2rem;">I'll be there for you.</p>
         
         <div style="max-width: 800px; margin: 0 auto;">
             <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7oF4kSyKhXMb7Ba9fGYlCZ?utm_source=generator" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
